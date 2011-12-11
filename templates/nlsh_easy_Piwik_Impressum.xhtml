@@ -1,0 +1,13 @@
+<?php
+$GLOBALS['TL_CSS']['nlsh_easy_Piwik_Counter'] = 'system/modules/nlsh_easy_Piwik_Counter/html/style.css';
+?>
+<!-- indexer::stop -->
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<div class="piwik_impressum">
+
+<?php  if ($this->easy_piwik_Impressum['nopiwikmodul'] == false ) echo $this->easy_piwik_Impressum['text'];
+			 if ($GLOBALS['TL_CONFIG']['displayErrors'] == true) echo $this->easy_piwik_Impressum['nopiwikmodul'];
+       if ($GLOBALS['TL_CONFIG']['piwiknoscan'] == false) echo $this->easy_piwik_Impressum['piwiknoscan']; ?>
+</div>
+</div>
+<!-- indexer::continue -->
