@@ -32,8 +32,8 @@
  */
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['piwikImpressum']   = '{type_legend},type;
-																																		{protected_legend:hide},protected;
-																																		{expert_legend:hide},guests,cssID,space';
+                                                                    {protected_legend:hide},protected;
+								    {expert_legend:hide},guests,cssID,space';
 
 /**
  * Add fields to tl_module

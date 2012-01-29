@@ -31,9 +31,9 @@
 */
 
 $GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'] = array
-																															(
-																																array('tl_module_piwik_impressum', 'checkImpressum')
-																															);
+                                                                (
+								        array('tl_module_piwik_impressum', 'checkImpressum')
+								);
 
 /**
  * Add palettes to tl_module
@@ -42,9 +42,9 @@ $GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'] = array
 $GLOBALS['TL_DCA']['tl_module']['palettes']['nlsh_easy_Piwik_Counter']   = '{title_legend},name,headline,type;
                                                                             {nlsh_piwik_legend},nlsh_piwik_domain,nlsh_piwik_id_site,nlsh_piwik_last_minutes,nlsh_piwik_token_auth,nlsh_piwik_range_start,nlsh_piwik_visits_start;
                                                                             {nlsh_piwik_Impressum_legend:hide},nlsh_piwik_impressum;
-																																						{nlsh_piwik_Piwik_noscan_legend},nlsh_piwik_noscan;
-																																						{protected_legend:hide},protected;
-																																						{expert_legend:hide},guests,cssID,space';
+									    {nlsh_piwik_Piwik_noscan_legend},nlsh_piwik_noscan;
+									    {protected_legend:hide},protected;
+									    {expert_legend:hide},guests,cssID,space';
 
 /**
  * Add fields to tl_module
