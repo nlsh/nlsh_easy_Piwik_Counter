@@ -51,80 +51,80 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['nlsh_easy_Piwik_Counter']   = '{tit
  */
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_domain'] = array
-(
+                                                                (
     								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_domain'],
     								'exclude'            => true,
     								'inputType'          => 'text',
     								'eval'               => array('tl_class' => 'w50', 'mandatory' => true, 'maxlength' => 255,'rgxp' => 'url' )
-);
+                                                                );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_id_site'] = array
-																																(
+                                                                (
     								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_id_site'],
     								'exclude'            => true,
     								'inputType'          => 'text',
     								'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 10,'rgxp' => 'digit')
-);
+                                                                );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_last_minutes'] = array
-																																(
+                                                                (
     								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_last_minutes'],
     								'exclude'            => true,
     								'inputType'          => 'text',
     								'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 10,'rgxp' => 'digit')
-);
+                                                                );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_token_auth'] = array
-																																(
+                                                                (
     								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_token_auth'],
     								'exclude'            => true,
     								'inputType'          => 'text',
     								'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 255,'rgxp' => 'alnum')
-);
+                                                                );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_range_start'] = array
-																																(
+                                                                (
     								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_range_start'],
     								'exclude'            => true,
     								'inputType'          => 'text',
     								'eval'               => array('rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(),'tl_class'=>'w50 wizard','mandatory'=>true, 'maxlength'=>20)
-);
+                                                                );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_visits_start'] = array
-																																(
+                                                                (
     								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_visits_start'],
     								'exclude'            => true,
     								'inputType'          => 'text',
     								'eval'               => array('tl_class' => 'w50' , 'maxlength' => 10,'rgxp' => 'digit')
-);
+                                                                );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_impressum'] = array
-									(
+                                                                (
     								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_impressum'],
     								'exclude'            => true,
     								'inputType'          => 'textarea',
-                    'save_callback'			 => array(array('tl_module_piwik_impressum','checkSaveImpressum')),
-										'eval'               => array('tl_class' => 'long' , 'allowHtml' =>true, 'preserveTags' => true, 'decodeEntities' => true, 'doNotSaveEmpty' => true)
-);
+                                                                'save_callback'	     => array(array('tl_module_piwik_impressum','checkSaveImpressum')),
+								'eval'               => array('tl_class' => 'long' , 'allowHtml' =>true, 'preserveTags' => true, 'decodeEntities' => true, 'doNotSaveEmpty' => true)
+                                                                );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_noscan'] = array
-                (
-                        'label'         					=> &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_noscan'],
-                        'inputType'     					=> 'checkbox',
-                        'exclude'       					=> true,
-                        'eval'         			 		 	=> array('tl_class'=>'long', 'submitOnChange' => true)
-);
+                                                                (
+                                                                'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_noscan'],
+                                                                'inputType'          => 'checkbox',
+                                                                'exclude'            => true,
+                                                                'eval'         	     => array('tl_class'=>'long', 'submitOnChange' => true)
+                                                                );
 
 class tl_module_piwik_impressum extends Backend
 {
-  // Wenn kein Impressumstext vorhanden, dann vorbelegen
-	public function checkImpressum(DataContainer $dc)
-	{
-    // Feld mit dem Impressumtext heraussuchen
-		$nlsh_piwik_impressum =  $this->Database->prepare("SELECT * FROM `tl_module` WHERE `id` =?")
-                                         ->execute($dc->id);
+        // Wenn kein Impressumstext vorhanden, dann vorbelegen
+        public function checkImpressum(DataContainer $dc)
+        {
+                // Feld mit dem Impressumtext heraussuchen
+                $nlsh_piwik_impressum =  $this->Database->prepare("SELECT * FROM `tl_module` WHERE `id` =?")
+                                        ->execute($dc->id);
 
-		// wenn nicht gefüllt, dann vorbelegen
-		if ($nlsh_piwik_impressum->nlsh_piwik_impressum == false)
-		{
-		$this->Database->prepare("UPDATE `tl_module` SET `nlsh_piwik_impressum` = ? WHERE `id` =?")
-									-> execute ($GLOBALS['TL_LANG']['tl_module']['piwik_Impressum'],$dc->id);
-		}
+                // wenn nicht gefüllt, dann vorbelegen
+                if ($nlsh_piwik_impressum->nlsh_piwik_impressum == false)
+                {
+	                $this->Database->prepare("UPDATE `tl_module` SET `nlsh_piwik_impressum` = ? WHERE `id` =?")
+	                        -> execute ($GLOBALS['TL_LANG']['tl_module']['piwik_Impressum'],$dc->id);
+                }
 
-	}
+        }
 
 	// Sollte das Feld Impressum leer sein ( für Rücksetzung auf default Text), dann Default- Text einfügen
 	public function checkSaveImpressum($Field,Datacontainer $dc)

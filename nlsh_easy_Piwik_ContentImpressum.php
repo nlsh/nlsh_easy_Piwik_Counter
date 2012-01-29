@@ -53,21 +53,21 @@ class nlsh_easy_Piwik_ContentImpressum extends ContentElement
 	{
   	$easy_piwik_Impressum = '';
 
-		// Abfrage der nlsh_easy_Piwik_Modules
-		$nlsh_easy_Piwik_Modules = $this->Database->execute("SELECT * FROM `tl_module` WHERE `nlsh_piwik_domain` != ''");
+	// Abfrage der nlsh_easy_Piwik_Modules
+	$nlsh_easy_Piwik_Modules = $this->Database->execute("SELECT * FROM `tl_module` WHERE `nlsh_piwik_domain` != ''");
 
-		// nur wenn ein Modul mit einer Piwik- Domaine vorhanden
+	// nur wenn ein Modul mit einer Piwik- Domaine vorhanden
   	if ($nlsh_easy_Piwik_Modules->numRows == true)
 		{
-      $easy_piwik_Impressum['text'] = $nlsh_easy_Piwik_Modules->nlsh_piwik_impressum;
+                        $easy_piwik_Impressum['text'] = $nlsh_easy_Piwik_Modules->nlsh_piwik_impressum;
 
 			// Anzahl der Piwik Module eintragen
-      $easy_piwik_Impressum['countpiwikmodule'] = $nlsh_easy_Piwik_Modules->numRows;
+                        $easy_piwik_Impressum['countpiwikmodule'] = $nlsh_easy_Piwik_Modules->numRows;
 
 			// Abschalten einbinden, falls erwünscht und URL vorhanden
-    	if ( ($nlsh_easy_Piwik_Modules->nlsh_piwik_noscan == true) && ($nlsh_easy_Piwik_Modules->nlsh_piwik_domain == true))
+    	                if ( ($nlsh_easy_Piwik_Modules->nlsh_piwik_noscan == true) && ($nlsh_easy_Piwik_Modules->nlsh_piwik_domain == true))
 			{
-        $easy_piwik_Impressum['piwiknoscan'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan'];
+                                $easy_piwik_Impressum['piwiknoscan'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan'];
 
 				$easy_piwik_Impressum['piwiknoscan'] = str_replace("{piwik_host}",$nlsh_easy_Piwik_Modules->nlsh_piwik_domain , $easy_piwik_Impressum['piwiknoscan']);
 
