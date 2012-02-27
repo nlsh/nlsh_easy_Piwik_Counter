@@ -42,9 +42,9 @@ $GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'] = array
 $GLOBALS['TL_DCA']['tl_module']['palettes']['nlsh_easy_Piwik_Counter']   = '{title_legend},name,headline,type;
                                                                             {nlsh_piwik_legend},nlsh_piwik_domain,nlsh_piwik_id_site,nlsh_piwik_last_minutes,nlsh_piwik_token_auth,nlsh_piwik_range_start,nlsh_piwik_visits_start;
                                                                             {nlsh_piwik_Impressum_legend:hide},nlsh_piwik_impressum;
-									    {nlsh_piwik_Piwik_noscan_legend},nlsh_piwik_noscan;
-									    {protected_legend:hide},protected;
-									    {expert_legend:hide},guests,cssID,space';
+									                                        {nlsh_piwik_Piwik_noscan_legend},nlsh_piwik_noscan, nlsh_piwik_css_optout;
+									                                        {protected_legend:hide},protected;
+									                                        {expert_legend:hide},guests,cssID,space';
 
 /**
  * Add fields to tl_module
@@ -97,8 +97,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_impressum'] = array
     								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_impressum'],
     								'exclude'            => true,
     								'inputType'          => 'textarea',
-                                                                'save_callback'	     => array(array('tl_module_piwik_impressum','checkSaveImpressum')),
-								'eval'               => array('tl_class' => 'long' , 'allowHtml' =>true, 'preserveTags' => true, 'decodeEntities' => true, 'doNotSaveEmpty' => true)
+                                    'save_callback'	     => array(array('tl_module_piwik_impressum','checkSaveImpressum')),
+								    'eval'               => array('tl_class' => 'long' , 'allowHtml' =>true, 'preserveTags' => true, 'decodeEntities' => true, 'doNotSaveEmpty' => true)
                                                                 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_noscan'] = array
                                                                 (
@@ -107,6 +107,13 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_noscan'] = array
                                                                 'exclude'            => true,
                                                                 'eval'         	     => array('tl_class'=>'long', 'submitOnChange' => true)
                                                                 );
+$GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_css_optout'] = array
+		                                                            (
+			                                                        'label'                   => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_css_optout'],
+			                                                        'inputType'               => 'textarea',
+                                                                    'save_callback'           => array(array('tl_module_piwik_impressum','saveOptOut')),
+			                                                        'eval'                    => array('decodeEntities'=>true, 'style'=>'height:120px;')
+		                                                            );
 
 class tl_module_piwik_impressum extends Backend
 {
@@ -137,5 +144,15 @@ class tl_module_piwik_impressum extends Backend
 
 		return $Field;
 	}
+    // CSS- Code in Template- Ordner speichern
+	public function saveOptOut($Field,Datacontainer $dc)
+	{
+	    $cssdatei = fopen("../tl_files/nlsh_piwik_counter_".$dc->activeRecord->id.".css","w");
+        fwrite($cssdatei, $Field);
+        fclose($cssdatei);
+
+		return $Field;
+	}
+
 }
 ?>

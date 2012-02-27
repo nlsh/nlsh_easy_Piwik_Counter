@@ -40,6 +40,7 @@ $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_range_start']  = array('Piwik- Star
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_visits_start'] = array('Vortrag Besucher gesamt', 'Geben Sie hier bitte die Anzahl der Besucher ein, die Ihre Website vor dem Start der Piwik- Analyse besuchten!');
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_impressum']    = array('HTML- Text Impressum', 'Geben Sie hier Ihren HTML- Text für das Impressum ein! Um den Standardtext dieser Extension wieder zu erhalten, löschen Sie einfach den gesamten Text!');
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_noscan']       = array('Möchten Sie die Möglichkeit zum Ausschalen von PIWIK gewähren?', 'WICHTIG Sie müssen den Tag &lt;iframe&gt; zu lassen !!!! Wenn Sie den Benutzern der Website die Möglichkeit geben wollen, die Verfolgung per PIWIK zu unterbinden, dann aktivieren Sie diese Auswahlbox.');
+$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_css_optout']   = array('Eigener CSS- Code','Geben Sie hier Ihren eigenen CSS- Code zum formatieren des iframe von optOut an. Lesen Sie vorher unbedingt das Handbuch!');
 
 /**
  * Reference

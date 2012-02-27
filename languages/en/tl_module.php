@@ -41,11 +41,12 @@ $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_range_start']  = array('Enter Piwik
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_visits_start'] = array('Beginn of count', 'Enter here the count to beginn the count!');
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_impressum']    = array('HTML- text Privacy Policy', 'Enter the HTML- text Privacy Policy!');
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_noscan']       = array('Choose to prevent PIWIK?', 'If you wont prevent PIWIK, click here');
+$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_css_optout']   = array('Own CSS- Data','Enter here your own CSS- Code for styling the iframe for optOut. Show the manual!');
 
 /**
 * Reference
 */
-$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_legend']              = 'Peferencefor easy Piwik Counter';
+$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_legend']              = 'Peference for easy Piwik Counter';
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_Impressum_legend']    = 'Privacy Policy -text for Piwik- analytics';
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_Piwik_noscan_legend'] = 'Prevent Piwik- analytics';
 
