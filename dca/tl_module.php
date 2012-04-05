@@ -87,32 +87,32 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_range_start'] = array
                                                                 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_visits_start'] = array
                                                                 (
-    								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_visits_start'],
-    								'exclude'            => true,
-    								'inputType'          => 'text',
-    								'eval'               => array('tl_class' => 'w50' , 'maxlength' => 10,'rgxp' => 'digit')
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_visits_start'],
+                                    'exclude'            => true,
+                                    'inputType'          => 'text',
+                                    'eval'               => array('tl_class' => 'w50' , 'maxlength' => 10,'rgxp' => 'digit')
                                                                 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_impressum'] = array
                                                                 (
-    								'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_impressum'],
-    								'exclude'            => true,
-    								'inputType'          => 'textarea',
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_impressum'],
+                                    'exclude'            => true,
+                                    'inputType'          => 'textarea',
                                     'save_callback'	     => array(array('tl_module_piwik_impressum','checkSaveImpressum')),
-								    'eval'               => array('tl_class' => 'long' , 'allowHtml' =>true, 'preserveTags' => true, 'decodeEntities' => true, 'doNotSaveEmpty' => true)
+                                    'eval'               => array('tl_class' => 'long' , 'allowHtml' =>true, 'preserveTags' => true, 'decodeEntities' => true, 'doNotSaveEmpty' => true)
                                                                 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_noscan'] = array
                                                                 (
-                                                                'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_noscan'],
-                                                                'inputType'          => 'checkbox',
-                                                                'exclude'            => true,
-                                                                'eval'         	     => array('tl_class'=>'long', 'submitOnChange' => true)
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_noscan'],
+                                    'inputType'          => 'checkbox',
+                                    'exclude'            => true,
+                                    'eval'         	     => array('tl_class'=>'long', 'submitOnChange' => true)
                                                                 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_css_optout'] = array
 		                                                            (
-			                                                        'label'                   => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_css_optout'],
-			                                                        'inputType'               => 'textarea',
-                                                                    'save_callback'           => array(array('tl_module_piwik_impressum','saveOptOut')),
-			                                                        'eval'                    => array('decodeEntities'=>true, 'style'=>'height:120px;')
+                                    'label'                   => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_css_optout'],
+			                        'inputType'               => 'textarea',
+                                    'save_callback'           => array(array('tl_module_piwik_impressum','saveOptOut')),
+			                        'eval'                    => array('decodeEntities'=>true, 'style'=>'height:120px;')
 		                                                            );
 
 class tl_module_piwik_impressum extends Backend

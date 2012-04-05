@@ -33,6 +33,7 @@
  * Back end modules
  */
 $GLOBALS['TL_LANG']['MOD'][''] = array('', '');
+$GLOBALS['TL_LANG']['MOD']['nlsh_easy_Piwik_Counter'] = 'Easy Piwik Counter';
 
 
 /**

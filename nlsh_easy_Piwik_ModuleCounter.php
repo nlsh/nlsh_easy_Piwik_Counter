@@ -53,14 +53,22 @@ class nlsh_easy_Piwik_ModuleCounter extends Module
 	{
 
         //Vorgabe durch Benutzereingabe
-        $piwik_Domain     	= $this->nlsh_piwik_domain;
-        $piwik_Id_Site    	= $this->nlsh_piwik_id_site;
+        $piwik_Domain           = $this->nlsh_piwik_domain;
+        $piwik_Id_Site          = $this->nlsh_piwik_id_site;
         $piwik_LastMinutes      = $this->nlsh_piwik_last_minutes;
         $piwik_Token_auth       = $this->nlsh_piwik_token_auth;
         $piwik_Range_Start      = $this->nlsh_piwik_range_start;
         $piwik_visits_start     = $this->nlsh_piwik_visits_start;
 
         $piwik_Range_Start    = date("Y-m-d", $piwik_Range_Start);
+
+        // Kontrolle, ob korrekte Adresse ins Netz
+        $parseUrl = (parse_url($piwik_Domain));
+
+        if (!$parseUrl['scheme'])
+        {
+            $piwik_Domain = "http://" . $piwik_Domain;
+        }
 
         // Vorgaben per Modul
         $piwik_Module     	= 'API';
