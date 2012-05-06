@@ -1,29 +1,13 @@
 <?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
 
 /**
- * TYPOlight webCMS
- * Copyright (C) 2005 Leo Feyer
+ * Contao Open Source CMS
  *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 2.1 of the License, or (at your option) any later version.
+ * Copyright (C) 2005-2012 Leo Feyer
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at http://www.gnu.org/licenses/.
- *
- * PHP version 5
- * @copyright  Leo Feyer 2005
- * @author     Leo Feyer <leo@typolight.org>
- * @package    News
- * @license    LGPL
- * @filesource
+ * @package Easy Piwik Counter
+ * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
+ * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
 /**
@@ -115,9 +99,22 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_css_optout'] = array
 			                        'eval'                    => array('decodeEntities'=>true, 'style'=>'height:120px;')
 		                                                            );
 
+
+/**
+ * class tl_module_piwik_impressum
+ *
+ * Enthält Funktionen einzelner Felder der Konfiguration
+ * @package Easy Piwik Counter
+ */
 class tl_module_piwik_impressum extends Backend
 {
-        // Wenn kein Impressumstext vorhanden, dann vorbelegen
+
+        /**
+         * Wenn kein Impressumstext vorhanden, dann vorbelegen in Datenbank
+         *
+         * onload_callback
+         * @param DataContainer
+         */
         public function checkImpressum(DataContainer $dc)
         {
                 // Feld mit dem Impressumtext heraussuchen
@@ -130,10 +127,16 @@ class tl_module_piwik_impressum extends Backend
 	                $this->Database->prepare("UPDATE `tl_module` SET `nlsh_piwik_impressum` = ? WHERE `id` =?")
 	                        -> execute ($GLOBALS['TL_LANG']['tl_module']['piwik_Impressum'],$dc->id);
                 }
-
         }
 
-	// Sollte das Feld Impressum leer sein ( für Rücksetzung auf default Text), dann Default- Text einfügen
+
+    /**
+    * Sollte das Feld Impressum leer sein ( z.B. für Rücksetzung auf Default Text), dann Default- Text einfügen
+    *
+    * @param string
+    * @param DataContainer
+    * @return string Text für Impressum
+    */
 	public function checkSaveImpressum($Field,Datacontainer $dc)
 	{
 
@@ -144,7 +147,15 @@ class tl_module_piwik_impressum extends Backend
 
 		return $Field;
 	}
-    // CSS- Code in Template- Ordner speichern
+
+
+    /**
+     * CSS- Code in Template- Ordner speichern
+     *
+     * @param string
+     * @param DataContainer
+     * @return string zurück mit übergebenem Text, ohne Änderung
+     */
 	public function saveOptOut($Field,Datacontainer $dc)
 	{
 	    $cssdatei = fopen("../tl_files/nlsh_piwik_counter_".$dc->activeRecord->id.".css","w");
