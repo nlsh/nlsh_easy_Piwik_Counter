@@ -5,7 +5,7 @@
  *
  * @copyright (C) 2012 Nils Heinold
  *
- * @package Easy Piwik Counter
+ * @package Easy_Piwik_Counter
  * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
@@ -16,7 +16,7 @@
  *
  * @copyright  Nils Heinold 
  * @author     Nils Heinold <http://www.nilsheinold.de>
- * @package    Easy Piwik Counter
+ * @package    Easy_Piwik_Counter
  */
 class nlsh_easy_Piwik_ModuleCounter extends Module
 {

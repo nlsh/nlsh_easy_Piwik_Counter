@@ -5,7 +5,7 @@
  *
  * @copyright (C) 2012 Nils Heinold
  *
- * @package Easy Piwik Counter
+ * @package Easy_Piwik_Counter
  * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
@@ -104,7 +104,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_css_optout'] = array
  * class tl_module_piwik_impressum
  *
  * Enthält Funktionen einzelner Felder der Konfiguration
- * @package Easy Piwik Counter
+ * @package Easy_Piwik_Counter
  */
 class tl_module_piwik_impressum extends Backend
 {
