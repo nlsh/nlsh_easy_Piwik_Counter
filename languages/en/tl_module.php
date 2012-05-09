@@ -3,9 +3,9 @@ if (!defined('TL_ROOT'))
 		die('You cannot access this file directly!');
 
 /**
- * Contao Open Source CMS
+ * Extension für CMS Contao http://www.contao.org
  *
- * Copyright (C) 2005-2012 Leo Feyer
+ * @copyright (C) 2012 Nils Heinold
  *
  * @package Easy Piwik Counter
  * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
