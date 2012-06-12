@@ -1,7 +1,7 @@
 <?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
- * Extension f¸r CMS Contao http://www.contao.org
+ * Extension f√ºr CMS Contao http://www.contao.org
  *
  * @copyright (C) 2012 Nils Heinold
  *
@@ -26,11 +26,11 @@ $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_online_title']    
  */
 $GLOBALS['TL_LANG']['MSC']['piwik_Impressum']  = "<p><strong>Statistische Auswertungen mit PIWIK!<br /></strong>";
 $GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "Diese Website benutzt Piwik, eine Open-Source-Software zur statistischen Auswertung der Besucherzugriffe. ";
-$GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "Piwik verwendet sog. ìCookiesî, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermˆglichen. ";
-$GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "Die durch den Cookie erzeugten Informationen ¸ber Ihre Benutzung dieses Internetangebotes werden auf dem Server des Anbieters in Deutschland gespeichert. ";
+$GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "Piwik verwendet sog. ‚ÄúCookies‚Äù, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie erm√∂glichen. ";
+$GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "Die durch den Cookie erzeugten Informationen √ºber Ihre Benutzung dieses Internetangebotes werden auf dem Server des Anbieters in Deutschland gespeichert. ";
 $GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "Die IP-Adresse wird sofort nach der Verarbeitung und vor deren Speicherung anonymisiert.<br /><br /> ";
-$GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "Sie kˆnnen die Installation der Cookies durch eine entsprechende Einstellung Ihrer Browser Software verhindern; ";
-$GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht s‰mtliche Funktionen dieser Website vollumf‰nglich nutzen kˆnnen.</p>";
+$GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "Sie k√∂nnen die Installation der Cookies durch eine entsprechende Einstellung Ihrer Browser Software verhindern; ";
+$GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht s√§mtliche Funktionen dieser Website vollumf√§nglich nutzen k√∂nnen.</p>";
 
 
 // Impressum- Modul Fehlermeldungen

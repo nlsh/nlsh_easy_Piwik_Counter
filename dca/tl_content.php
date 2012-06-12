@@ -1,7 +1,7 @@
 <?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
 
 /**
- * Extension für CMS Contao http://www.contao.org
+ * Extension fÃ¼r CMS Contao http://www.contao.org
  *
  * @copyright (C) 2012 Nils Heinold
  *
@@ -17,7 +17,7 @@
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['piwikImpressum']   = '{type_legend},type;
                                                                     {protected_legend:hide},protected;
-								    {expert_legend:hide},guests,cssID,space';
+                                                                    {expert_legend:hide},guests,cssID,space';
 
 /**
  * Add fields to tl_module

@@ -1,7 +1,7 @@
 <?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
- * Extension für CMS Contao http://www.contao.org
+ * Extension fÃ¼r CMS Contao http://www.contao.org
  *
  * @copyright (C) 2012 Nils Heinold
  *
@@ -14,7 +14,7 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['CTE']['piwikImpressum']       = array('Piwik- Impressum einfügen','Fügt ein Piwik- Impressum ein.');
+$GLOBALS['TL_LANG']['CTE']['piwikImpressum']       = array('Piwik- Impressum einfÃ¼gen','FÃ¼gt ein Piwik- Impressum ein.');
 
 /**
  * Reference
