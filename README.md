@@ -1,8 +1,8 @@
 nlsh_easy_Piwik_Counter
 =======================
 
-Verwaltung eines kleinen Gartenvereines
----------------------------------------
+Einfacher PIWIK Counter
+-----------------------
 
 Diese Erweiterung ist ein Modul für das CMS Contao.
 
