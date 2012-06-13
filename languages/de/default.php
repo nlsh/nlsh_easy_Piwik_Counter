@@ -1,14 +1,22 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
- * Extension für CMS Contao http://www.contao.org
- *
- * @copyright (C) 2012 Nils Heinold
- *
- * @package Easy_Piwik_Counter
- * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * Contao Open Source CMS
+ * 
+ * Copyright (C) 2005-2012 Leo Feyer
+ * 
+ * @package   nlsh_easy_Piwik_Counter 
+ * @author    Nils Heinold
+ * @link      http://github.com/nlsh/nlsh_easy_Piwik_Counter
+ * @license   LGPL 
+ * @copyright Nils Heinold 
  */
+
+
+/**
+* Content elements
+*/
+ $GLOBALS['TL_LANG']['CTE']['piwikImpressum']       = array('Piwik- Impressum einfügen','Fügt ein Piwik- Impressum ein.');
 
 
 /**
@@ -39,4 +47,3 @@ $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['nopiwikmodul']  
 // Impressum- Modul Aufruf optOut
 $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan']     = "<iframe class =\"piwikiframe\" frameborder=\"no\" src=\"{piwik_host}/index.php?module=CoreAdminHome&amp;action=optOut&amp;language={piwik_lang}&amp;css={piwik_css_optout}\"></iframe>";
 
-?>

@@ -1,17 +1,19 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
- * Extension für CMS Contao http://www.contao.org
+ * Contao Open Source CMS
  *
- * @copyright (C) 2012 Nils Heinold
+ * Copyright (C) 2005-2012 Leo Feyer
  *
- * @package Easy_Piwik_Counter
- * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @package   nlsh_easy_Piwik_Counter
+ * @author    Nils Heinold
+ * @link      http://github.com/nlsh/nlsh_easy_Piwik_Counter 
+ * @license   LGPL
+ * @copyright Nils Heinold
  */
 
 
-/**
+ /*
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_domain']       = array('Domain vom Piwik- Server', 'Geben Sie hier bitte die Domaine zum Piwik- Server ein!');
@@ -30,14 +32,3 @@ $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_css_optout']   = array('Eigener CSS
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_legend']              = 'Voreinstellungen des easy Piwik Counters';
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_Impressum_legend']    = 'Impressums-Text für Piwik- Analyse';
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_Piwik_noscan_legend'] = 'Ausschalten der Piwik- Analyse erlauben';
-
-/**
- * Buttons
- */
-$GLOBALS['TL_LANG']['tl_module']['new']    = array('', '');
-$GLOBALS['TL_LANG']['tl_module']['edit']   = array('', '');
-$GLOBALS['TL_LANG']['tl_module']['copy']   = array('', '');
-$GLOBALS['TL_LANG']['tl_module']['delete'] = array('', '');
-$GLOBALS['TL_LANG']['tl_module']['show']   = array('', '');
-
-?>

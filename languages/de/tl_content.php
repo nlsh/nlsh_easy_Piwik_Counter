@@ -1,34 +1,25 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
- * Extension für CMS Contao http://www.contao.org
+ * Contao Open Source CMS
  *
- * @copyright (C) 2012 Nils Heinold
+ * Copyright (C) 2005-2012 Leo Feyer
  *
- * @package Easy_Piwik_Counter
- * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @package   nlsh_easy_Piwik_Counter
+ * @author    Nils Heinold
+ * @link      http://github.com/nlsh/nlsh_easy_Piwik_Counter
+ * @license   LGPL
+ * @copyright Nils Heinold
  */
 
 
-/**
+ /**
+* Legends
+*/
+$GLOBALS['TL_LANG']['tl_content']['which_module_legend'] = 'Modul- Auswahl';
+
+
+ /**
  * Fields
  */
-$GLOBALS['TL_LANG']['CTE']['piwikImpressum']       = array('Piwik- Impressum einfügen','Fügt ein Piwik- Impressum ein.');
-
-/**
- * Reference
- */
-$GLOBALS['TL_LANG']['CTE']['']           = '';
-
-
-/**
- * Buttons
- */
-$GLOBALS['TL_LANG']['tl_content']['new']    = array('', '');
-$GLOBALS['TL_LANG']['tl_content']['edit']   = array('', '');
-$GLOBALS['TL_LANG']['tl_content']['copy']   = array('', '');
-$GLOBALS['TL_LANG']['tl_content']['delete'] = array('', '');
-$GLOBALS['TL_LANG']['tl_content']['show']   = array('', '');
-
-?>
+ $GLOBALS['TL_LANG']['tl_content']['which_module']  = array('Modul- Auswahl', 'Wählen Sie hier Ihr PIWIK- Modul aus, für welches das Impressum dargestellt werden soll!');

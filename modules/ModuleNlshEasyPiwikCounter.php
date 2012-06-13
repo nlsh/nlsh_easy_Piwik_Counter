@@ -1,24 +1,32 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
 /**
- * Extension für CMS Contao http://www.contao.org
+ * Contao Open Source CMS
+ * 
+ * Copyright (C) 2005-2012 Leo Feyer
  *
- * @copyright (C) 2012 Nils Heinold
- *
- * @package Easy_Piwik_Counter
- * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @package   nlsh_easy_Piwik_Counter 
+ * @author    Nils Heinold
+ * @link      http://github.com/nlsh/nlsh_easy_Piwik_Counter
+ * @license   LGPL 
+ * @copyright Nils Heinold 
  */
 
 
 /**
- * Class nlsh_easy_Piwik_ModuleCounter
- *
- * @copyright  Nils Heinold
- * @author     Nils Heinold <http://www.nilsheinold.de>
- * @package    Easy_Piwik_Counter
+ * Namespace
  */
-class nlsh_easy_Piwik_ModuleCounter extends Module
+namespace nlsh_easy_Piwik_Counter;
+
+
+/**
+ * Class ModuleNlshEasyPiwikCounter
+ *
+ * @copyright  Nils Heinold 
+ * @author     Nils Heinold 
+ * @package    nlsh_easy_Piwik_Counter
+ */
+class ModuleNlshEasyPiwikCounter extends \Module
 {
 
 	/**
@@ -166,5 +174,3 @@ class nlsh_easy_Piwik_ModuleCounter extends Module
 	$this->Template->easy_piwik_counter = $easy_piwik_counter;
 	}
 }
-
-?>

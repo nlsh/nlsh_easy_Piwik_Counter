@@ -1,23 +1,25 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php
 
 /**
- * Extension für CMS Contao http://www.contao.org
- *
- * @copyright (C) 2012 Nils Heinold
- *
- * @package Easy_Piwik_Counter
- * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * Contao Open Source CMS
+ * 
+ * Copyright (C) 2005-2012 Leo Feyer
+ * 
+ * @package   nlsh_easy_Piwik_Counter 
+ * @author    Nils Heinold
+ * @link      http://github.com/nlsh/nlsh_easy_Piwik_Counter 
+ * @license   LGPL 
+ * @copyright Nils Heinold 
  */
+
 
 /**
  * Add  config to tl_module
 */
 
 $GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'] = array
-																(
-																	array('tl_module_piwik_impressum', 'checkImpressum')
-																);
+                                                               (array('tl_module_piwik_impressum', 'checkImpressum'));
+
 
 /**
  * Add palettes to tl_module
@@ -30,100 +32,111 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['nlsh_easy_Piwik_Counter']   = '{tit
                                                                             {protected_legend:hide},protected;
                                                                             {expert_legend:hide},guests,cssID,space';
 
+
 /**
  * Add fields to tl_module
  */
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_domain'] = array
-									(
-									'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_domain'],
-									'exclude'            => true,
-									'inputType'          => 'text',
-									'eval'               => array('tl_class' => 'w50', 'mandatory' => true, 'maxlength' => 255,'rgxp' => 'url' )
-									);
+                                                                (
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_domain'],
+                                    'exclude'            => true,
+                                    'inputType'          => 'text',
+                                    'eval'               => array('tl_class' => 'w50', 'mandatory' => true, 'maxlength' => 255,'rgxp' => 'url' ),
+                                    'sql'                => "varchar(255) NOT NULL default ''"
+                                                                );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_id_site'] = array
-									(
- 									'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_id_site'],
-									'exclude'            => true,
-									'inputType'          => 'text',
-									'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 10,'rgxp' => 'digit')
-									);
+                                                                (
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_id_site'],
+                                    'exclude'            => true,
+                                    'inputType'          => 'text',
+                                    'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 10,'rgxp' => 'digit'),
+                                    'sql'                => "int(10) unsigned NOT NULL default '0'"
+                                                                );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_last_minutes'] = array
-									(
- 									'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_last_minutes'],
-									'exclude'            => true,
-									'inputType'          => 'text',
-									'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 10,'rgxp' => 'digit')
-									);
+                                                                (
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_last_minutes'],
+                                    'sql'                => "",
+                                    'exclude'            => true,
+                                    'inputType'          => 'text',
+                                    'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 10,'rgxp' => 'digit'),
+                                    'sql'                => "int(10) unsigned NOT NULL default '30'"
+                                                                );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_token_auth'] = array
-									(
-									'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_token_auth'],
-									'exclude'            => true,
-									'inputType'          => 'text',
-									'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 255,'rgxp' => 'alnum')
-									);
+                                                                (
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_token_auth'],
+                                    'exclude'            => true,
+                                    'inputType'          => 'text',
+                                    'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 255,'rgxp' => 'alnum'),
+                                    'sql'                => "varchar(255) NOT NULL default ''"
+                                                                );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_range_start'] = array
-									(
-									'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_range_start'],
-									'exclude'            => true,
-									'inputType'          => 'text',
-									'eval'               => array('rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(),'tl_class'=>'w50 wizard','mandatory'=>true, 'maxlength'=>20)
-									);
+                                                                (
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_range_start'],
+                                    'exclude'            => true,
+                                    'inputType'          => 'text',
+                                    'eval'               => array('rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(),'tl_class'=>'w50 wizard','mandatory'=>true, 'maxlength'=>20),
+                                    'sql'                => "varchar(10) NOT NULL default ''"
+                                                                );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_visits_start'] = array
-									(
-									'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_visits_start'],
-									'exclude'            => true,
-									'inputType'          => 'text',
-									'eval'               => array('tl_class' => 'w50' , 'maxlength' => 10,'rgxp' => 'digit')
-									);
+                                                                (
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_visits_start'],
+                                    'exclude'            => true,
+                                    'inputType'          => 'text',
+                                    'eval'               => array('tl_class' => 'w50' , 'maxlength' => 10,'rgxp' => 'digit'),
+                                    'sql'                => "int(10) unsigned NULL default '0'"
+                                                                );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_impressum'] = array
-									(
-									'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_impressum'],
-									'exclude'            => true,
-									'inputType'          => 'textarea',
-									'save_callback'      => array(array('tl_module_piwik_impressum','checkSaveImpressum')),
-									'eval'               => array('tl_class' => 'long' , 'allowHtml' =>true, 'preserveTags' => true, 'decodeEntities' => true, 'doNotSaveEmpty' => true)
-									);
+                                                                (
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_impressum'],
+                                    'exclude'            => true,
+                                    'inputType'          => 'textarea',
+                                    'save_callback'      => array(array('tl_module_piwik_impressum','checkSaveImpressum')),
+                                    'eval'               => array('tl_class' => 'long' , 'allowHtml' =>true, 'preserveTags' => true, 'decodeEntities' => true, 'doNotSaveEmpty' => true),
+                                    'sql'                => "blob NULL"
+                                                                );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_noscan'] = array
-									(
-									'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_noscan'],
-									'inputType'          => 'checkbox',
-									'exclude'            => true,
-									'eval'               => array('tl_class'=>'long', 'submitOnChange' => true)
-									);
+                                                                (
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_noscan'],
+                                    'inputType'          => 'checkbox',
+                                    'exclude'            => true,
+                                    'eval'               => array('tl_class'=>'long', 'submitOnChange' => true),
+                                    'sql'                => "char(1) NOT NULL default '0'"
+                                                                );
+
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_css_optout'] = array
-									(
-									'label'                   => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_css_optout'],
-									'inputType'               => 'textarea',
-									'save_callback'           => array(array('tl_module_piwik_impressum','saveOptOut')),
-									'eval'                    => array('decodeEntities'=>true, 'style'=>'height:120px;')
-									);
+                                                                (
+                                    'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_css_optout'],
+                                    'inputType'          => 'textarea',
+                                    'save_callback'      => array(array('tl_module_piwik_impressum','saveOptOut')),
+                                    'eval'               => array('decodeEntities'=>true, 'style'=>'height:120px;'),
+                                    'sql'                => "text NULL"
+                                                                );
 
 
 /**
  * class tl_module_piwik_impressum
  *
  * Enthält Funktionen einzelner Felder der Konfiguration
- * @package Easy_Piwik_Counter
+ * @package nlsh_easy_Piwik_Counter
  */
 class tl_module_piwik_impressum extends Backend
 {
 
-
 	/**
-	* Wenn kein Impressumstext vorhanden, dann vorbelegen in Datenbank
-	*
-	* onload_callback
-	* @param DataContainer
-	*/
+	 * Wenn kein Impressumstext vorhanden, dann vorbelegen in Datenbank
+	 *
+	 * onload_callback
+	 * @param DataContainer
+	 */
 	public function checkImpressum(DataContainer $dc)
 	{
 		// Feld mit dem Impressumtext heraussuchen
@@ -159,20 +172,18 @@ class tl_module_piwik_impressum extends Backend
 
 
 	/**
-	* CSS- Code in Template- Ordner speichern
-	*
-	* @param string
-	* @param DataContainer
-	* @return string zurück mit übergebenem Text, ohne Änderung
-	*/
+	 * CSS- Code in Template- Ordner speichern
+	 *
+	 * @param string
+	 * @param DataContainer
+	 * @return string zurück mit übergebenem Text, ohne Änderung
+	.*/
 	public function saveOptOut($Field,Datacontainer $dc)
 	{
-		$cssdatei = fopen("../tl_files/nlsh_piwik_counter_".$dc->activeRecord->id.".css","w");
+		$cssdatei = fopen("../files/nlsh_piwik_counter_".$dc->activeRecord->id.".css","w");
 		fwrite($cssdatei, $Field);
 		fclose($cssdatei);
 
 		return $Field;
 	}
-
 }
-?>
