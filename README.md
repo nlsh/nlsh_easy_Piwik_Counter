@@ -10,17 +10,27 @@ Diese Erweiterung fragt über die Piwik- API einige Counterabfragen ab und gibt 
 
 Abgefragt werden:
 
-    Besucher gesamt
-    Besucher Monat
-    Besucher heute
-    Besucher gestern
-    Besucher online
+* Besucher gesamt
+* Besucher Monat
+* Besucher heute
+* Besucher gestern
+* Besucher online
 
 Die Darstellung erfolgt im einfachen, tabellenlosem Layout, welches durch css beliebig angepasst werden kann. Eine kleine css- Vorgabe ist schon enthalten und erleichtert dem Ungeübten die eigene Anpassung.
 
 Auch das Template ist extrem einfach und auch etwas ausführlicher gehalten, wodurch jedem eine eigene Anpassung möglich sein sollte.
 
-Entstanden ist diese Erweiterung, da es immer Abweichungen zwischen dem auf der Website eingesetztem Counter und den Auswertungen aus Piwik gab. Es ist einfach manchmal mühselig, einem Kunden dies zu erklären und begreiflich zu machen.
+Desweiteren enthält dieses Modul eine Frontend- Ausgabe für ein Impressums- Text, welcher auch die Möglichkeit der Deaktivierung des PIWIK- Scans ermöglicht.
+
+Diese Möglichkeit der Deaktivierung wird von PIWIK in Form eines IFRAMES angeboten, welches eigentlich nicht mit CSS von "außerhalb"  möglich ist, hat man aber Zugang zur PIWIK- Installation, ist die Gestaltung mittelst diesem Modul möglich!
+
+Achtung! <IFRAMES> müssen dann natürlich in Contao unter Einstellungen zugelassen sein!!!
+
+Entstanden ist diese Erweiterung, da es immer Abweichungen zwischen dem auf der Website eingesetztem Counter und den Auswertungen aus Piwik gab, es notwendig war, im Impressum die Benutzung von PIWIK zu erwähnen und das Ausschalten von PIWIK zu gewährleisten.
+
+Es ist einfach manchmal mühselig, einem Kunden dies zu erklären und begreiflich zu machen.
+
+Ausführliches Wiki und Tickets unter http://github.com/nlsh/nlsh_easy_Piwik_Counter
 
 Abhängigkeiten
 --------------
