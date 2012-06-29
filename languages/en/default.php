@@ -16,7 +16,7 @@
 /**
 * Content elements
 */
-$GLOBALS['TL_LANG']['CTE']['piwikImpressum']       = array('Inserts Piwik- Privacy Policy','Inserts easy Piwik- Privacy Policy.');   
+$GLOBALS['TL_LANG']['CTE']['piwikImpressum']       = array('Inserts Piwik- Privacy Policy','Inserts easy Piwik- Privacy Policy.');
 
 
 /**
@@ -28,6 +28,7 @@ $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_month_title']     
 $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_today_title']     = 'visitors today';
 $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_yesterday_title'] = 'visitors yesterday';
 $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_online_title']    = 'visitors online';
+$GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_now_no_data']     = '?';
 
 
 /**

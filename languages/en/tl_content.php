@@ -16,4 +16,3 @@
  /**
  * Fields
  */
- $GLOBALS['TL_LANG']['tl_content']['which_module']  = array('module selection', 'Select please the module, for which you want show the Privacy Policy!');

@@ -42,7 +42,7 @@ class ContentNlshEasyPiwikImpressum extends \ContentElement
 	{
 		$easy_piwik_Impressum = '';
 
-		// Abfrage der nlsh_easy_Piwik_Modules
+		// Abfrage des nlsh_easy_Piwik_Modules
 		$nlsh_easy_Piwik_Modules = \ModuleModel::findByPk($this->which_module);
 
 		// nur wenn ein Modul mit einer Piwik- Domaine vorhanden

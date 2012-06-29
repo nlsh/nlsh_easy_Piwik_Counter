@@ -22,4 +22,3 @@ $GLOBALS['TL_LANG']['tl_content']['which_module_legend'] = 'Modul- Auswahl';
  /**
  * Fields
  */
- $GLOBALS['TL_LANG']['tl_content']['which_module']  = array('Modul- Auswahl', 'Wählen Sie hier Ihr PIWIK- Modul aus, für welches das Impressum dargestellt werden soll!');
