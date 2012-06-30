@@ -10,6 +10,7 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
+
 /**
  * Add palettes to tl_module
  */
@@ -40,8 +41,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_id_site'] = array
                                     'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_id_site'],
                                     'exclude'            => true,
                                     'inputType'          => 'text',
-                                    'load_callback'      => array(array('tl_module_piwik_impressum','checkIdSite')),
-                                    'save_callback'      => array(array('tl_module_piwik_impressum','checkIdSaveSite')),
+                                    'load_callback'      => array(array('tl_module_piwik_impressum','checkIdSiteDuringLoad')),
+                                    'save_callback'      => array(array('tl_module_piwik_impressum','checkIdSiteDuringSave')),
                                     'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 10,'rgxp' => 'digit'),
                                     'sql'                => "int(10) unsigned NOT NULL"
                                                                 );
@@ -49,7 +50,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_id_site'] = array
 $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_last_minutes'] = array
                                                                 (
                                     'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_last_minutes'],
-                                    'sql'                => "",
                                     'exclude'            => true,
                                     'inputType'          => 'text',
                                     'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 10,'rgxp' => 'digit'),
@@ -114,6 +114,12 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_css_optout'] = array
                                                                 );
 
 
+$GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_last_connect'] = array
+                                                                (
+                                    'sql'                => "mediumtext NULL"
+                                                                );
+
+
 /**
  * class tl_module_piwik_impressum
  *
@@ -125,34 +131,33 @@ class tl_module_piwik_impressum extends Backend
 
 
 	/**
-	 * Import the back end user object
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-		$this->import('BackendUser', 'User');
-	}
-
-	/**
 	* Vorbelegung durch die Datenbank ist ein Wert 0, da int- Felder wohl einen Wert haben müssen
 	*
 	* ein load/save_callback des Feldes nlsh_piwik_id_site
 	*
-	* @param int
-	* return int/false entweder Leer oder mit altem Wert, falls vorhanden
+	* @param   int         Feldwert
+	* @return  int/false   entweder Leer oder mit altem Wert, falls vorhanden
 	*/
-	public function checkIdSite($Field)
+	public function checkIdSiteDuringLoad($Field)
 	{
 		if ($Field == 0) return '';
 		else return $Field;
 	}
 
 
-	 public function checkIdSaveSite($Field)
+	/**
+	* Fehlermeldung erzeugen, falls die ID den Wert 0 hat
+	*
+	* @param   int	Feldwert
+	* @return  int/ Fehlermeldung
+	*/
+	public function checkIdSiteDuringSave($Field)
 	{
 		if ($Field == 0)
+		{
 			throw new Exception($GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_id_site_not_null']);
-		else
+		}
+
 		return $Field;
 	}
 
@@ -160,8 +165,8 @@ class tl_module_piwik_impressum extends Backend
 	/**
 	* Sollte das Feld Impressum leer sein ( z.B. für Rücksetzung auf Default Text), dann Default- Text einfügen
 	*
-	* @param string
-	* @return string Text für Impressum
+	* @param   string  Feldwert
+	* @return  string  Text für Impressum
 	*/
 	public function checkImpressum($Field)
 	{
@@ -178,9 +183,9 @@ class tl_module_piwik_impressum extends Backend
 	/**
 	 * CSS- Code in Template- Ordner speichern
 	 *
-	 * @param string
-	 * @param DataContainer
-	 * @return string zurück mit übergebenem Text, ohne Änderung
+	 * @param   string
+	 * @param   DataContainer
+	 * @return  string zurück mit übergebenem Text, ohne Änderung
 	.*/
 	public function saveOptOut($Field)
 	{

@@ -56,7 +56,7 @@ class nlsh_easy_Piwik_ContentImpressum extends ContentElement
 			$easy_piwik_Impressum['text'] = $nlsh_easy_Piwik_Modules->nlsh_piwik_impressum;
 
 			// Abschalten einbinden, falls erwünscht und URL vorhanden
-			if ( ($nlsh_easy_Piwik_Modules->nlsh_piwik_noscan == true) && ($nlsh_easy_Piwik_Modules->nlsh_piwik_domain == true))
+			if ( ($nlsh_easy_Piwik_Modules->nlsh_piwik_noscan == true) && (fopen($nlsh_easy_Piwik_Modules->nlsh_piwik_domain,"r") == true))
 			{
 				$easy_piwik_Impressum['piwiknoscan'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan'];
 

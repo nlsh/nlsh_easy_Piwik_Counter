@@ -1,17 +1,35 @@
 <?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
- * Extension für CMS Contao http://www.contao.org
+ * Contao Open Source CMS
+ * Copyright (C) 2005-2012 Leo Feyer
  *
- * @copyright (C) 2012 Nils Heinold
+ * Formerly known as TYPOlight Open Source CMS.
  *
- * @package Easy_Piwik_Counter
- * @link https://github.com/nlsh/nlsh_easy_Piwik_Counter
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * This program is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program. If not, please visit the Free
+ * Software Foundation website at <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ * @copyright  Leo Feyer 2005-2012
+ * @author     Leo Feyer <http://www.contao.org>
+ * @package    Registration
+ * @license    LGPL
+ * @filesource
  */
 
 
-/**
+ /*
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_domain']             = array('Domain vom Piwik- Server', 'Geben Sie hier bitte die Domaine zum Piwik- Server ein!');
@@ -31,14 +49,5 @@ $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_id_site_not_null']   = 'Die ID darf
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_legend']              = 'Voreinstellungen des easy Piwik Counters';
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_Impressum_legend']    = 'Impressums-Text für Piwik- Analyse';
 $GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_Piwik_noscan_legend'] = 'Ausschalten der Piwik- Analyse erlauben';
-
-/**
- * Buttons
- */
-$GLOBALS['TL_LANG']['tl_module']['new']    = array('', '');
-$GLOBALS['TL_LANG']['tl_module']['edit']   = array('', '');
-$GLOBALS['TL_LANG']['tl_module']['copy']   = array('', '');
-$GLOBALS['TL_LANG']['tl_module']['delete'] = array('', '');
-$GLOBALS['TL_LANG']['tl_module']['show']   = array('', '');
 
 ?>

@@ -23,5 +23,6 @@ CREATE TABLE `tl_module` (
   `nlsh_piwik_visits_start` int(10) unsigned NULL default NULL,
   `nlsh_piwik_impressum` blob NULL,
   `nlsh_piwik_noscan` char(1) NOT NULL default '0',
-  `nlsh_piwik_css_optout` text NULL,   
+  `nlsh_piwik_css_optout` text NULL,
+  `nlsh_piwik_last_connect` mediumtext NULL,
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
