@@ -16,7 +16,6 @@
  /**
 * Legends
 */
-$GLOBALS['TL_LANG']['tl_content']['which_module_legend'] = 'Modul- Auswahl';
 
 
  /**
