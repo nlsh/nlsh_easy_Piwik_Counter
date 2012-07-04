@@ -47,4 +47,4 @@ $GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "</p>";
 $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['nopiwikmodul']     = 'Can`t find Piwik- Module!';
 
 // Impressum- Modul Aufruf optOut
-$GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan']     = "<iframe class =\"piwikiframe\" frameborder=\"no\" src=\"{piwik_host}/index.php?module=CoreAdminHome&amp;action=optOut&amp;language={piwik_lang}&amp;css={piwik_cssurl_opt}\"></iframe>";
+$GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan']     = "<iframe class =\"piwikiframe\" frameborder=\"0\" src=\"%s/index.php?module=CoreAdminHome&amp;action=optOut&amp;language=%s&amp;css=%s\"></iframe>";

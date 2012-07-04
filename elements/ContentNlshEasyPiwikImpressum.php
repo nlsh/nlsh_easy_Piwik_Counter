@@ -28,56 +28,59 @@ namespace nlsh_easy_Piwik_Counter;
  */
 class ContentNlshEasyPiwikImpressum extends \ContentElement
 {
-	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'nlsh_easy_Piwik_Impressum';
 
 
-	/**
-	 * Generate module
-	 */
-	protected function compile()
-	{
-		$easy_piwik_Impressum = '';
+    /**
+     * Template
+     * @var string
+     */
+    protected $strTemplate = 'nlsh_easy_Piwik_Impressum';
 
-		// Abfrage des nlsh_easy_Piwik_Modules
-		$nlsh_easy_Piwik_Modules = \ModuleModel::findOneBy('type', 'nlsh_easy_Piwik_Counter');
 
-		// nur wenn ein Modul mit einer Piwik- Domaine vorhanden
-		if ($nlsh_easy_Piwik_Modules->type == 'nlsh_easy_Piwik_Counter')
-		{
+    /**
+     * Generate module
+     */
+    protected function compile()
+    {
+        // Suche nach einem Modul des Typs 'nlsh_easy_Piwik_Module'
+        $objPiwikModule = \ModuleModel::findOneBy('type', 'nlsh_easy_Piwik_Counter');
 
-			// Pfad zur Website mit scheme "http://" vorbelegen
-			$parseUrl = (parse_url($nlsh_easy_Piwik_Modules->nlsh_piwik_domain));
+        if ( $objPiwikModule !== null )
+        {
+            // Impressumstext hinzufügen
+            $arrEasyPiwikImpressum['impressumtext'] = $objPiwikModule->nlsh_piwik_impressum;
 
-			if (!$parseUrl['scheme'])
-				{
-					$nlsh_easy_Piwik_Modules->nlsh_piwik_domain = "http://" . $nlsh_easy_Piwik_Modules->nlsh_piwik_domain;
-				}
+            // Abschalten einbinden, falls erwünscht und URL vorhanden
+            if ( ($objPiwikModule->nlsh_piwik_noscan == true) && ($objPiwikModule->nlsh_piwik_domain == true) )
+            {
+                // Pfad zur Website mit scheme "http://" vorbelegen, falls scheme nicht vorhanden
+                $parseUrl = (parse_url($objPiwikModule->nlsh_piwik_domain));
 
-			$urlcssOptOut = $this->Environment->url . $GLOBALS['TL_CONFIG']['websitePath'] . "/files/nlsh_piwik_counter_".$nlsh_easy_Piwik_Modules->id.".css";
+                if ( !$parseUrl['scheme'] )
+                {
+                    $objPiwikModule->nlsh_piwik_domain = "http://" . $objPiwikModule->nlsh_piwik_domain;
+                }
 
-			$easy_piwik_Impressum['text'] = $nlsh_easy_Piwik_Modules->nlsh_piwik_impressum;
+                // Pfad zur CSS- Datei hinzufügen
+                $urlCssOptOut = $this->Environment->url . $GLOBALS['TL_CONFIG']['websitePath']
+                                                        . "/files/nlsh_piwik_counter_"
+                                                        . $objPiwikModule->id
+                                                        . ".css";
 
-			// Abschalten einbinden, falls erwünscht und URL vorhanden
-			if ( ($nlsh_easy_Piwik_Modules->nlsh_piwik_noscan == true) && ($nlsh_easy_Piwik_Modules->nlsh_piwik_domain == true))
-			{
-				$easy_piwik_Impressum['piwiknoscan'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan'];
+                // HTML- String für das iframe erzeugen und hinzufügen
+                $arrEasyPiwikImpressum['piwiknoscan'] = sprintf( $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan'],
+                                                                 $objPiwikModule->nlsh_piwik_domain,
+                                                                 $GLOBALS['TL_LANGUAGE'],
+                                                                 $urlCssOptOut);
+            }
+        }
+        else
+        {
+            // Fehlermeldung, wenn kein PIWIK- Modul vorhanden
+            $arrEasyPiwikImpressum['nopiwikmodul'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['nopiwikmodul'];
+        }
 
-				$easy_piwik_Impressum['piwiknoscan'] = str_replace("{piwik_host}",$nlsh_easy_Piwik_Modules->nlsh_piwik_domain , $easy_piwik_Impressum['piwiknoscan']);
-
-				$easy_piwik_Impressum['piwiknoscan'] = str_replace("{piwik_lang}",$GLOBALS['TL_LANGUAGE'] , $easy_piwik_Impressum['piwiknoscan']);
-
-				$easy_piwik_Impressum['piwiknoscan'] = str_replace("{piwik_css_optout}",$urlcssOptOut , $easy_piwik_Impressum['piwiknoscan']);
-			}
-		}
-		else
-		{
-			$easy_piwik_Impressum['nopiwikmodul'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['nopiwikmodul'];
-		}
-
-		$this->Template->easy_piwik_Impressum = $easy_piwik_Impressum;
-	}
+        // und ab in das Template
+        $this->Template->piwikimpressum = (object) $arrEasyPiwikImpressum;
+    }
 }

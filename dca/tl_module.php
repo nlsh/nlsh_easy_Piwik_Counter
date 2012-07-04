@@ -189,7 +189,7 @@ class tl_module_piwik_impressum extends Backend
 	 * @param   DataContainer
 	 * @return  string zurück mit übergebenem Text, ohne Änderung
 	.*/
-	public function saveOptOut($Field)
+	public function saveOptOut($Field, DataContainer $dc)
 	{
 		$cssdatei = fopen("../files/nlsh_piwik_counter_".$dc->activeRecord->id.".css","w");
 		fwrite($cssdatei, $Field);
