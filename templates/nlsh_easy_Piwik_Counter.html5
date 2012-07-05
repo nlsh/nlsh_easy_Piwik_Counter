@@ -6,6 +6,7 @@ $GLOBALS['TL_CSS']['nlsh_easy_Piwik_Counter'] = 'system/modules/nlsh_easy_Piwik_
 <?php if ($this->headline): ?>
 <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
 <?php endif;?>
+<!-- indexer::stop -->
 <div class="piwik_counter">
 <div class="visits_all">
 <div class="visits_all_title"><?php echo $this->easyPiwikCounter['visits_all_title']; ?>
@@ -34,6 +35,4 @@ $GLOBALS['TL_CSS']['nlsh_easy_Piwik_Counter'] = 'system/modules/nlsh_easy_Piwik_
 </div>
 </div>
 </div>
-
-
-
+<!-- indexer::continue -->   
