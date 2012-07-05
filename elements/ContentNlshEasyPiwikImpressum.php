@@ -68,7 +68,7 @@ class ContentNlshEasyPiwikImpressum extends \ContentElement
                                                         . ".css";
 
                 // HTML- String für das iframe erzeugen und hinzufügen
-                $arrEasyPiwikImpressum['piwiknoscan'] = sprintf( $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan'],
+                $arrEasyPiwikImpressum['piwiknoscan'] = sprintf( "<iframe class =\"piwikiframe\" frameborder=\"0\" src=\"%s/index.php?module=CoreAdminHome&amp;action=optOut&amp;language=%s&amp;css=%s\"></iframe>",
                                                                  $objPiwikModule->nlsh_piwik_domain,
                                                                  $GLOBALS['TL_LANGUAGE'],
                                                                  $urlCssOptOut);
