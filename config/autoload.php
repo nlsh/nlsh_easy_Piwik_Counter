@@ -18,7 +18,7 @@
  */
 ClassLoader::addNamespaces(array
 (
-	'nlsh_easy_Piwik_Counter',
+    'nlsh_easy_Piwik_Counter',
 ));
 
 
@@ -27,11 +27,11 @@ ClassLoader::addNamespaces(array
  */
 ClassLoader::addClasses(array
 (
-	// Elements
-	'nlsh_easy_Piwik_Counter\ContentNlshEasyPiwikImpressum' => 'system/modules/nlsh_easy_Piwik_Counter/elements/ContentNlshEasyPiwikImpressum.php',
+    // Elements
+    'nlsh_easy_Piwik_Counter\ContentNlshEasyPiwikImpressum' => 'system/modules/nlsh_easy_Piwik_Counter/elements/ContentNlshEasyPiwikImpressum.php',
 
-	// Modules
-	'nlsh_easy_Piwik_Counter\ModuleNlshEasyPiwikCounter'    => 'system/modules/nlsh_easy_Piwik_Counter/modules/ModuleNlshEasyPiwikCounter.php',
+    // Modules
+    'nlsh_easy_Piwik_Counter\ModuleNlshEasyPiwikCounter'    => 'system/modules/nlsh_easy_Piwik_Counter/modules/ModuleNlshEasyPiwikCounter.php',
 ));
 
 
@@ -40,6 +40,6 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'nlsh_easy_Piwik_Counter'   => 'system/modules/nlsh_easy_Piwik_Counter/templates',
-	'nlsh_easy_Piwik_Impressum' => 'system/modules/nlsh_easy_Piwik_Counter/templates',
+    'nlsh_easy_Piwik_Counter'   => 'system/modules/nlsh_easy_Piwik_Counter/templates',
+    'nlsh_easy_Piwik_Impressum' => 'system/modules/nlsh_easy_Piwik_Counter/templates',
 ));

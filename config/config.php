@@ -64,7 +64,7 @@
  */
 array_insert($GLOBALS['FE_MOD']['miscellaneous'], 0, array
 (
-	'nlsh_easy_Piwik_Counter'        => 'ModuleNlshEasyPiwikCounter',
+    'nlsh_easy_Piwik_Counter'        => 'ModuleNlshEasyPiwikCounter',
 ));
 
 
@@ -93,7 +93,7 @@ array_insert($GLOBALS['FE_MOD']['miscellaneous'], 0, array
  array_insert ($GLOBALS['TL_CTE']['texts'],3, array
 (
 
-	'piwikImpressum'  => 'ContentNlshEasyPiwikImpressum',
+    'piwikImpressum'  => 'ContentNlshEasyPiwikImpressum',
 
 ));
 
