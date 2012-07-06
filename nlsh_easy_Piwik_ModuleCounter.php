@@ -22,200 +22,151 @@ class nlsh_easy_Piwik_ModuleCounter extends Module
 {
 
 
-	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'nlsh_easy_Piwik_Counter';
+    /**
+     * Template
+     * @var string
+     */
+    protected $strTemplate = 'nlsh_easy_Piwik_Counter';
 
 
-	/**
-	 * Kontakt zum PIWIK- Server
-	 * @boolean
-	 */
-	 protected $booleanConnect;
+    /**
+     * Kontakt zum PIWIK- Server
+     * @boolean
+     */
+     protected $booleanConnect;
 
 
-	/**
-	 * Generate module
-	 */
-	protected function compile()
-	{
-		//Vorgabe durch Benutzereingabe
-		$piwik_Domain                  = $this->nlsh_piwik_domain;
-		$piwik_Id_Site                 = $this->nlsh_piwik_id_site;
-		$piwik_LastMinutes             = $this->nlsh_piwik_last_minutes;
-		$piwik_Token_auth              = $this->nlsh_piwik_token_auth;
-		$piwik_Range_Start             = $this->nlsh_piwik_range_start;
-		$piwik_visits_start            = $this->nlsh_piwik_visits_start;
+    /**
+     * Generate module
+     */
+    protected function compile()
+    {
+        $this->nlsh_piwik_range_start = date('Y-m-d', $this->nlsh_piwik_range_start);
+        $dateToday                    = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d')    , date('Y') ));
+        $dateYesterday                = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') -1 , date('Y') ));
 
-		$piwik_Range_Start    = date("Y-m-d", $piwik_Range_Start);
+        // Kontrolle, ob korrekte Adresse mit scheme
+        $parseUrl = (parse_url($this->nlsh_piwik_domain));
 
-		// Kontrolle, ob korrekte Adresse ins www
-		$parseUrl = (parse_url($piwik_Domain));
+        if (!$parseUrl['scheme'])
+        {
+            $this->nlsh_piwik_domain = "http://" . $this->nlsh_piwik_domain;
+        }
 
-		if (!$parseUrl['scheme'])
-		{
-			$piwik_Domain = "http://" . $piwik_Domain;
-		}
+        // Besucher auslesen
+        // gesamte Besucher auslesen
+        $urlFileGetContens = '&method=' . 'VisitsSummary.get'
+                           . '&idSite=' . $this->nlsh_piwik_id_site
+                           . '&period=' . 'range'
+                           . '&date='   . $this->nlsh_piwik_range_start . ',' . $dateToday;
 
-		// Vorgaben per Modul
-		$piwik_Module           = 'API';
-		$piwik_date             = date ("Y-m-d", mktime(0, 0, 0, date("m"), date("d")     , date("Y")));
-		$piwik_date_yesterday   = date ("Y-m-d", mktime(0, 0, 0, date("m"), date("d") -1  , date("Y")));
-		$piwik_Range_End        = $piwik_date;
+        $piwik_visits_all               = $this->piwikFileGetContents($urlFileGetContens);
+        $easyPiwikCounter['visits_all'] = $piwik_visits_all['nb_visits'] + $this->nlsh_piwik_visits_start;
 
-		// Besucher auslesen
-		$piwik_Method = 'VisitsSummary.get';
+        // Monatsbesucher auslesen
+        $urlFileGetContens = '&method=' . 'VisitsSummary.get'
+                           . '&idSite=' . $this->nlsh_piwik_id_site
+                           . '&period=' . 'month'
+                           . '&date='   . $dateToday;
 
-		// gesamte Besucher auslesen
-		$piwik_Period             = 'range';
-		$piwik_file_get_contents  = "$piwik_Domain/index.php";
-		$piwik_file_get_contents .= "?module=$piwik_Module";
-		$piwik_file_get_contents .= "&method=$piwik_Method";
-		$piwik_file_get_contents .= "&idSite=$piwik_Id_Site";
-		$piwik_file_get_contents .= "&period=$piwik_Period";
-		$piwik_file_get_contents .= "&date=$piwik_Range_Start,$piwik_Range_End";
-		$piwik_file_get_contents .= "&format=php";
-		$piwik_file_get_contents .= "&token_auth=$piwik_Token_auth";
+        $piwik_visits_month               = $this->piwikFileGetContents($urlFileGetContens);
+        $easyPiwikCounter['visits_month'] = $piwik_visits_month['nb_visits'];
 
-		$piwik_visits_all                 = $this->piwikFileGetContents($piwik_file_get_contents);
-		$easy_piwik_counter['visits_all'] = $piwik_visits_all['nb_visits'];
+        // Tagesbesucher auslesen
+        $urlFileGetContens = '&method=' . 'VisitsSummary.get'
+                           . '&idSite=' . $this->nlsh_piwik_id_site
+                           . '&period=' . 'day'
+                           . '&date='   . $dateToday;
 
-		$easy_piwik_counter['visits_all'] = $easy_piwik_counter['visits_all'] + $piwik_visits_start;
+        $piwik_visits_today               = $this->piwikFileGetContents($urlFileGetContens);
+        $easyPiwikCounter['visits_today'] = $piwik_visits_today['nb_visits'];
 
-		// Monatsbesucher auslesen
-		$piwik_Period             = 'month';
-		$piwik_file_get_contents  = "$piwik_Domain/index.php";
-		$piwik_file_get_contents .= "?module=$piwik_Module";
-		$piwik_file_get_contents .= "&method=$piwik_Method";
-		$piwik_file_get_contents .= "&idSite=$piwik_Id_Site";
-		$piwik_file_get_contents .= "&period=$piwik_Period";
-		$piwik_file_get_contents .= "&date=$piwik_date";
-		$piwik_file_get_contents .= "&format=php";
-		$piwik_file_get_contents .= "&token_auth=$piwik_Token_auth";
+        // Tagesbesucher von Gestern auslesen
+        $urlFileGetContens = '&method=' . 'VisitsSummary.get'
+                           . '&idSite=' . $this->nlsh_piwik_id_site
+                           . '&period=' . 'day'
+                           . '&date='   . $dateYesterday;
 
-		$piwik_visits_month = $this->piwikFileGetContents($piwik_file_get_contents);
+        $piwik_visits_yesterday               = $this->piwikFileGetContents($urlFileGetContens);
+        $easyPiwikCounter['visits_yesterday'] = $piwik_visits_yesterday['nb_visits'];
 
-		$easy_piwik_counter['visits_month']       = $piwik_visits_month['nb_visits'];
+        // aktuell Besucher online
+        $urlFileGetContens = '&method='      . 'Live.getCounters'
+                           . '&idSite='      . $this->nlsh_piwik_id_site
+                           . '&lastMinutes=' . $this->nlsh_piwik_last_minutes;
 
-		// Tagesbesucher auslesen
-		$piwik_Period             = 'day';
-		$piwik_file_get_contents  = "$piwik_Domain/index.php";
-		$piwik_file_get_contents .= "?module=$piwik_Module";
-		$piwik_file_get_contents .= "&date=$piwik_date";
-		$piwik_file_get_contents .= "&method=$piwik_Method";
-		$piwik_file_get_contents .= "&idSite=$piwik_Id_Site";
-		$piwik_file_get_contents .= "&period=$piwik_Period";
-		$piwik_file_get_contents .= "&format=php";
-		$piwik_file_get_contents .= "&token_auth=$piwik_Token_auth";
+        $piwik_visits_online               = $this->piwikFileGetContents($urlFileGetContens);
+        $easyPiwikCounter['visits_online'] = $piwik_visits_online[0]['visits'];
 
-		$piwik_visits_today = $this->piwikFileGetContents($piwik_file_get_contents);
+        // Wenn Verbindung vorhanden
+        if ( ($easyPiwikCounter['visits_all'] - $this->nlsh_piwik_visits_start) != 0)
+        {
+            $this->Database->prepare("UPDATE `tl_module` SET `nlsh_piwik_last_connect` = ? WHERE `tl_module`.`id` = ?")
+                        ->execute(serialize($easyPiwikCounter),$this->id);
 
-		$easy_piwik_counter['visits_today']       = $piwik_visits_today['nb_visits'];
+            // der Piwik- Code zum Auswerten der Website sollte am Ende der html- Seite stehen
+            // der Counter steht dadurch in der Reihenfolge vor dessen Aufruf
+            // d.h. beim ersten Abfragen der API ist der eigene erste Aufruf der Seite noch gar nicht
+            // vom Piwik- Server registriert, so dass eine um 1 falsche Ausgabe erzeugt wird.
+            // dies wird hier korrigiert, anhand der gerade vorhandenen online Besucher
+            // ist zwar auch nicht richtig, dafür verwirrt aber ein online- Counter von 0 nicht mehr
 
-		// Tagesbesucher von Gestern auslesen
-		$piwik_Period             = 'day';
-		$piwik_file_get_contents  = "$piwik_Domain/index.php";
-		$piwik_file_get_contents .= "?module=$piwik_Module";
-		$piwik_file_get_contents .= "&date=$piwik_date_yesterday";
-		$piwik_file_get_contents .= "&method=$piwik_Method";
-		$piwik_file_get_contents .= "&idSite=$piwik_Id_Site";
-		$piwik_file_get_contents .= "&period=$piwik_Period";
-		$piwik_file_get_contents .= "&format=php";
-		$piwik_file_get_contents .= "&token_auth=$piwik_Token_auth";
+            if ( $easyPiwikCounter['visits_online'] == false )
+            {
+                $easyPiwikCounter['visits_all']        = ($easyPiwikCounter['visits_all'] + 1);
+                $easyPiwikCounter['visits_month']      = ($easyPiwikCounter['visits_month'] + 1);
+                $easyPiwikCounter['visits_today']      = ($easyPiwikCounter['visits_today'] + 1);
+                $easyPiwikCounter['visits_online']     = 1;
+            }
 
-		$piwik_visits_yesterday = $this->piwikFileGetContents($piwik_file_get_contents);
+            // Zahlen formatieren, Länder- Spezifikationen berücksichtigen
+            $easyPiwikCounter['visits_all']       = number_format( $easyPiwikCounter['visits_all'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
+            $easyPiwikCounter['visits_month']     = number_format( $easyPiwikCounter['visits_month'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
+            $easyPiwikCounter['visits_today']     = number_format( $easyPiwikCounter['visits_today'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
+            $easyPiwikCounter['visits_yesterday'] = number_format( $easyPiwikCounter['visits_yesterday'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
+            $easyPiwikCounter['visits_online']    = number_format( $easyPiwikCounter['visits_online'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
 
-		$easy_piwik_counter['visits_yesterday'] = $piwik_visits_yesterday['nb_visits'];
+        }
 
-		// aktuell Besucher online
-		$piwik_Method 	          = 'Live.getCounters';
-		$piwik_file_get_contents  = "$piwik_Domain/index.php";
-		$piwik_file_get_contents .= "?module=$piwik_Module";
-		$piwik_file_get_contents .= "&method=$piwik_Method";
-		$piwik_file_get_contents .= "&idSite=$piwik_Id_Site";
-		$piwik_file_get_contents .= "&lastMinutes=$piwik_LastMinutes";
-		$piwik_file_get_contents .= "&format=php";
-		$piwik_file_get_contents .= "&token_auth=$piwik_Token_auth";
+        // Wenn keine Verbindung vorhanden, dann Eintrag aus Modul -> nlsh_piwik_last_connect
+        else
+        {
+            $easyPiwikCounter = unserialize($this->nlsh_piwik_last_connect);
 
-		$piwik_visits_online = $this->piwikFileGetContents($piwik_file_get_contents);
+            // nur den Gesamtzähler übernehmen
+            $easyPiwikCounter['visits_all']       = number_format( $easyPiwikCounter['visits_all'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
 
-		$easy_piwik_counter['visits_online'] = $piwik_visits_online[0]['visits'];
+            // die anderen Zähler überschreiben
+            $easyPiwikCounter['visits_month']     = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_now_no_data'];
+            $easyPiwikCounter['visits_today']     = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_now_no_data'];
+            $easyPiwikCounter['visits_yesterday'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_now_no_data'];
+            $easyPiwikCounter['visits_online']    = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_now_no_data'];
+        }
 
-		// Wenn Verbindung vorhanden, dann neuen Eintrag in Datenbank -> nlsh_piwik_last_connect
-		if ($this->booleanConnect)
-		{
-			$this->Database->prepare("UPDATE `tl_module` SET `nlsh_piwik_last_connect` = ? WHERE `tl_module`.`id` = ?")
-						->execute(serialize($easy_piwik_counter),$this->id);
-		}
+        // Texte übernehmen
+        $easyPiwikCounter['visits_all_title']       = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_all_title'];
+        $easyPiwikCounter['visits_month_title']     = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_month_title'];
+        $easyPiwikCounter['visits_today_title']     = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_today_title'];
+        $easyPiwikCounter['visits_yesterday_title'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_yesterday_title'];
+        $easyPiwikCounter['visits_online_title']    = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_online_title'];
 
-		// Wenn keine Verbindung vorhanden, dann Eintrag aus Modul -> nlsh_piwik_last_connect
-		if ($this->booleanConnect == false)
-		{
-			$easy_piwik_counter = unserialize($this->nlsh_piwik_last_connect);
-
-			// bis auf Gesamtzähler überschreiben
-			$easy_piwik_counter['visits_month']     = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_now_no_data'];
-			$easy_piwik_counter['visits_today']     = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_now_no_data'];
-			$easy_piwik_counter['visits_yesterday'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_now_no_data'];
-			$easy_piwik_counter['visits_online']    = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_now_no_data'];
-		}
-
-		// der piwik- Code zum Auswerten der Website sollte am Ende der html- Seite stehen
-		// der Counter steht dadurch in der Reihenfolge vor dessen Aufruf
-		// d.h. beim ersten Abfragen der API ist der eigene erste Aufruf der Seite noch gar nicht
-		// vom Piwik- Server registriert, so dass eine um 1 falsche Ausgabe erzeugt wird.
-		// dies wird hier korrigiert, anhand der gerade vorhandenen online Besucher
-		// ist zwar auch nicht richtig, dafür verwirrt aber ein online- Counter von 0 nicht mehr
-
-		if ( $easy_piwik_counter['visits_online'] == false )
-		{
-			$easy_piwik_counter['visits_all']        = ($easy_piwik_counter['visits_all'] + 1);
-			$easy_piwik_counter['visits_month']      = ($easy_piwik_counter['visits_month'] + 1);
-			$easy_piwik_counter['visits_today']      = ($easy_piwik_counter['visits_today'] + 1);
-			$easy_piwik_counter['visits_yesterday']  = ($easy_piwik_counter['visits_yesterday'] + 1);
-			$easy_piwik_counter['visits_online']     = 1;
-		}
-
-		// Zahlen formatieren, Länder- Spezifikationen berücksichtigen
-		$easy_piwik_counter['visits_all']           = number_format( $easy_piwik_counter['visits_all'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
-
-		if ($this->booleanConnect)
-		{
-			$easy_piwik_counter['visits_month']     = number_format( $easy_piwik_counter['visits_month'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
-			$easy_piwik_counter['visits_today']     = number_format( $easy_piwik_counter['visits_today'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
-			$easy_piwik_counter['visits_yesterday'] = number_format( $easy_piwik_counter['visits_yesterday'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
-			$easy_piwik_counter['visits_online']    = number_format( $easy_piwik_counter['visits_online'],0,$GLOBALS['TL_LANG']['MSC']['decimalSeparator'], $GLOBALS['TL_LANG']['MSC']['thousandsSeparator']);
-		}
-
-		// Texte übernehmen
-		$easy_piwik_counter['visits_all_title']       = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_all_title'];
-		$easy_piwik_counter['visits_month_title']     = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_month_title'];
-		$easy_piwik_counter['visits_today_title']     = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_today_title'];
-		$easy_piwik_counter['visits_yesterday_title'] = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_yesterday_title'];
-		$easy_piwik_counter['visits_online_title']    = $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_Counter']['visits_online_title'];
-
-		//Und rein in das Temlate
-		$this->Template->easy_piwik_counter = $easy_piwik_counter;
-	}
+        //Und rein in das Temlate
+        $this->Template->easyPiwikCounter = $easyPiwikCounter;
+    }
 
 
-	/**
-	* Abfrage des PIWIK- Servers
-	* @param string  Url mit Abfrage zum PIWIK- Server
-	* @return array  Array mit den abgefragten Werten
-	**/
-	protected function piwikFileGetContents($strUrl)
-	{
-		$arrResult = file_get_contents($strUrl);
+    /**
+    * Abfrage des PIWIK- Servers
+    * @param string  Url- Fragment mit Abfrage zum PIWIK- Server
+    * @return array  Array mit den abgefragten Werten
+    **/
+    protected function piwikFileGetContents($strUrl)
+    {
+        $strUrl = $this->nlsh_piwik_domain . '/index.php?module=API' . $strUrl . '&format=php&token_auth=' . $this->nlsh_piwik_token_auth;
 
-		if($arrResult) $this->booleanConnect = true;
+        $arrResult = file_get_contents($strUrl);
 
-		$arrResult = unserialize($arrResult);
-
-		return $arrResult;
-	}
+        return unserialize($arrResult);
+    }
 }
-
 ?>

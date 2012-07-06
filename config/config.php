@@ -1,7 +1,7 @@
 <?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
- * Extension für CMS Contao http://www.contao.org
+ * Extension fÃ¼r CMS Contao http://www.contao.org
  *
  * @copyright (C) 2012 Nils Heinold
  *
@@ -84,8 +84,7 @@
 
  array_insert ($GLOBALS['TL_CTE']['texts'],3, array
 (
-
-		'piwikImpressum'  => 'nlsh_easy_Piwik_ContentImpressum',
+    'piwikImpressum'  => 'nlsh_easy_Piwik_ContentImpressum',
 
 ));
 

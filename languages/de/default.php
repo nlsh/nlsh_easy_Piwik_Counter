@@ -61,7 +61,4 @@ $GLOBALS['TL_LANG']['MSC']['piwik_Impressum'] .= "wir weisen Sie jedoch darauf h
 // Impressum- Modul Fehlermeldungen
 $GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['nopiwikmodul']     = 'Kein Piwik- Modul vorhanden!';
 
-// Impressum- Modul Aufruf optOut
-$GLOBALS['TL_LANG']['MSC']['nlsh_easy_Piwik_ContentImpressum']['piwik_noscan']     = "<iframe class =\"piwikiframe\" frameborder=\"no\" src=\"{piwik_host}/index.php?module=CoreAdminHome&amp;action=optOut&amp;language={piwik_lang}&amp;css={piwik_css_optout}\"></iframe>";
-
 ?>
