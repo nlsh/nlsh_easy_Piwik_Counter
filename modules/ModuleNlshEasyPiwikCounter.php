@@ -101,10 +101,8 @@ class ModuleNlshEasyPiwikCounter extends \Module
         // Wenn Verbindung vorhanden
         if ( ($easyPiwikCounter['visits_all'] - $this->nlsh_piwik_visits_start) != 0)
         {
-            // Eintrag in Datenbank aktualisieren
-            $update = \ModuleModel::findByPk($this->id);
-            $update->nlsh_piwik_last_connect = serialize($easyPiwikCounter);
-            $update->save();
+            $this->Database->prepare("UPDATE `tl_module` SET `nlsh_piwik_last_connect` = ? WHERE `tl_module`.`id` = ?")
+                        ->execute(serialize($easyPiwikCounter),$this->id);
 
             // der Piwik- Code zum Auswerten der Website sollte am Ende der html- Seite stehen
             // der Counter steht dadurch in der Reihenfolge vor dessen Aufruf

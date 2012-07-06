@@ -18,7 +18,7 @@
  */
 ClassLoader::addNamespaces(array
 (
-	'nlsh_easy_Piwik_Counter',
+    'nlsh_easy_Piwik_Counter',
 ));
 
 
@@ -42,4 +42,4 @@ TemplateLoader::addFiles(array
 (
     'nlsh_easy_Piwik_Counter'   => 'system/modules/nlsh_easy_Piwik_Counter/templates',
     'nlsh_easy_Piwik_Impressum' => 'system/modules/nlsh_easy_Piwik_Counter/templates',
-)); 
+));
