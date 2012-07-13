@@ -83,7 +83,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
                            . '&period=' . 'range'
                            . '&date='   . $this->nlsh_piwik_range_start . ',' . $dateToday;
 
-        $piwik_visits_all               = $this->piwikFileGetContents($urlFileGetContens);
+        $piwik_visits_all               = $this->_piwikFileGetContents($urlFileGetContens);
         $easyPiwikCounter['visits_all'] = $piwik_visits_all['nb_visits'] + $this->nlsh_piwik_visits_start;
 
         // Monatsbesucher auslesen
@@ -92,7 +92,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
                            . '&period=' . 'month'
                            . '&date='   . $dateToday;
 
-        $piwik_visits_month               = $this->piwikFileGetContents($urlFileGetContens);
+        $piwik_visits_month               = $this->_piwikFileGetContents($urlFileGetContens);
         $easyPiwikCounter['visits_month'] = $piwik_visits_month['nb_visits'];
 
         // Tagesbesucher auslesen
@@ -101,7 +101,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
                            . '&period=' . 'day'
                            . '&date='   . $dateToday;
 
-        $piwik_visits_today               = $this->piwikFileGetContents($urlFileGetContens);
+        $piwik_visits_today               = $this->_piwikFileGetContents($urlFileGetContens);
         $easyPiwikCounter['visits_today'] = $piwik_visits_today['nb_visits'];
 
         // Tagesbesucher von Gestern auslesen
@@ -110,7 +110,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
                            . '&period=' . 'day'
                            . '&date='   . $dateYesterday;
 
-        $piwik_visits_yesterday               = $this->piwikFileGetContents($urlFileGetContens);
+        $piwik_visits_yesterday               = $this->_piwikFileGetContents($urlFileGetContens);
         $easyPiwikCounter['visits_yesterday'] = $piwik_visits_yesterday['nb_visits'];
 
         // aktuell Besucher online
@@ -118,7 +118,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
                            . '&idSite='      . $this->nlsh_piwik_id_site
                            . '&lastMinutes=' . $this->nlsh_piwik_last_minutes;
 
-        $piwik_visits_online               = $this->piwikFileGetContents($urlFileGetContens);
+        $piwik_visits_online               = $this->_piwikFileGetContents($urlFileGetContens);
         $easyPiwikCounter['visits_online'] = $piwik_visits_online[0]['visits'];
 
         // Wenn Verbindung vorhanden
@@ -183,11 +183,11 @@ class ModuleNlshEasyPiwikCounter extends \Module
     * @param string  Url- Fragment mit Abfrage zum PIWIK- Server
     * @return array  Array mit den abgefragten Werten
     **/
-    protected function piwikFileGetContents($strUrl)
+    protected function _piwikFileGetContents($strUrl)
     {
         $strUrl = $this->nlsh_piwik_domain . '/index.php?module=API' . $strUrl . '&format=php&token_auth=' . $this->nlsh_piwik_token_auth;
 
-        $arrResult = file_get_contents($strUrl);
+        @$arrResult = file_get_contents($strUrl);
 
         return unserialize($arrResult);
     }
