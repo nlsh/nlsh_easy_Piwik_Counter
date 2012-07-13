@@ -43,8 +43,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_id_site'] = array
                                     'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_id_site'],
                                     'exclude'            => true,
                                     'inputType'          => 'text',
-                                    'load_callback'      => array(array('tl_module_piwik_impressum','checkIdSiteDuringLoad')),
-                                    'save_callback'      => array(array('tl_module_piwik_impressum','checkIdSiteDuringSave')),
+                                    'load_callback'      => array(array('tl_modulePiwikImpressum','checkIdSiteDuringLoad')),
+                                    'save_callback'      => array(array('tl_modulePiwikImpressum','checkIdSiteDuringSave')),
                                     'eval'               => array('tl_class' => 'w50' ,'mandatory' => true, 'maxlength' => 10,'rgxp' => 'digit'),
                                     'sql'                => "int(10) unsigned NOT NULL"
                                                                 );
@@ -90,8 +90,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_impressum'] = array
                                     'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_impressum'],
                                     'exclude'            => true,
                                     'inputType'          => 'textarea',
-                                    'load_callback'      => array(array('tl_module_piwik_impressum','checkImpressum')),
-                                    'save_callback'      => array(array('tl_module_piwik_impressum','checkImpressum')),
+                                    'load_callback'      => array(array('tl_modulePiwikImpressum','checkImpressum')),
+                                    'save_callback'      => array(array('tl_modulePiwikImpressum','checkImpressum')),
                                     'eval'               => array('tl_class' => 'long' , 'allowHtml' =>true, 'preserveTags' => true, 'decodeEntities' => true, 'doNotSaveEmpty' => true),
                                     'sql'                => "blob NULL"
                                                                 );
@@ -110,7 +110,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_css_optout'] = array
                                                                 (
                                     'label'              => &$GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_css_optout'],
                                     'inputType'          => 'textarea',
-                                    'save_callback'      => array(array('tl_module_piwik_impressum','saveOptOut')),
+                                    'save_callback'      => array(array('tl_modulePiwikImpressum','saveOptOut')),
                                     'eval'               => array('decodeEntities'=>true, 'style'=>'height:120px;'),
                                     'sql'                => "text NULL"
                                                                 );
@@ -123,12 +123,12 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_last_connect'] = array
 
 
 /**
- * class tl_module_piwik_impressum
+ * class tl_modulePiwikImpressum
  *
  * Enthält Funktionen einzelner Felder der Konfiguration
  * @package nlsh_easy_Piwik_Counter
  */
-class tl_module_piwik_impressum extends Backend
+class tl_modulePiwikImpressum extends Backend
 {
 
 
