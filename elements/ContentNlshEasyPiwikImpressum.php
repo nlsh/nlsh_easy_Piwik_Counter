@@ -16,7 +16,7 @@
 /**
  * Namespace
  */
-namespace nlsh_easy_Piwik_Counter;
+namespace nlsh\nlsh_easy_Piwik_Counter;
 
 
 /**
