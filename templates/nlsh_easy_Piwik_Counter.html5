@@ -9,30 +9,30 @@ $GLOBALS['TL_CSS']['nlsh_easy_Piwik_Counter'] = 'system/modules/nlsh_easy_Piwik_
 <!-- indexer::stop -->
 <div class="piwik_counter">
 <div class="visits_all">
-<div class="visits_all_title"><?php echo $this->easyPiwikCounter['visits_all_title']; ?>
-<span class="visits_all_number"><?php echo $this->easyPiwikCounter['visits_all']; ?></span>
+<div class="visits_all_title"><?php echo $this->description_visits_all; ?>
+<span class="visits_all_number"><?php echo $this->visits_all; ?></span>
 </div>
 </div>
 <div class="visits_month">
-<div class="visits_month_title"><?php echo $this->easyPiwikCounter['visits_month_title']; ?>
-<span class="visits_month_number"><?php echo $this->easyPiwikCounter['visits_month']; ?></span>
+<div class="visits_month_title"><?php echo $this->description_visits_month; ?>
+<span class="visits_month_number"><?php echo $this->visits_month; ?></span>
 </div>
 </div>
 <div class="visits_today">
-<div class="visits_today_title"><?php echo $this->easyPiwikCounter['visits_today_title']; ?>
-<span class="visits_today_number"><?php echo $this->easyPiwikCounter['visits_today']; ?></span>
+<div class="visits_today_title"><?php echo $this->description_visits_today; ?>
+<span class="visits_today_number"><?php echo $this->visits_today; ?></span>
 </div>
 </div>
 <div class="visits_yesterday">
-<div class="visits_yesterday_title"><?php echo $this->easyPiwikCounter['visits_yesterday_title']; ?>
-<span class="visits_yesterday_number"><?php echo $this->easyPiwikCounter['visits_yesterday']; ?></span>
+<div class="visits_yesterday_title"><?php echo $this->description_visits_yesterday; ?>
+<span class="visits_yesterday_number"><?php echo $this->visits_yesterday; ?></span>
 </div>
 </div>
 <div class="visits_online">
-<div class="visits_online_title"><?php echo $this->easyPiwikCounter['visits_online_title']; ?>
-<span class="visits_online_number"><?php echo $this->easyPiwikCounterwik_counter['visits_online']; ?></span>
+<div class="visits_online_title"><?php echo $this->description_visits_online; ?>
+<span class="visits_online_number"><?php echo $this->visits_online; ?></span>
 </div>
 </div>
 </div>
 </div>
-<!-- indexer::continue -->   
+<!-- indexer::continue -->

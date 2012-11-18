@@ -1,15 +1,15 @@
 <?php
-
 /**
- * Contao Open Source CMS
- * 
- * Copyright (C) 2005-2012 Leo Feyer
- * 
- * @package   nlsh_easy_Piwik_Counter 
- * @author    Nils Heinold
- * @link      http://github.com/nlsh/nlsh_easy_Piwik_Counter
- * @license   LGPL 
- * @copyright Nils Heinold 
+ * Easy Piwik Counter
+ *
+ * This is the nlsh_easy_Piwik configuration file.
+ *
+ * PHP version 5.3.2 or greater
+ * @copyright  Nils Heinold (c) 2012
+ * @author     Nils Heinold
+ * @package    nlshEasyPiwikCounter
+ * @link       http://github.com/nlsh/nlsh_easy_Piwik_Counter
+ * @license    LGPL
  */
 
 
@@ -64,7 +64,7 @@
  */
 array_insert($GLOBALS['FE_MOD']['miscellaneous'], 0, array
 (
-    'nlsh_easy_Piwik_Counter'        => 'nlsh_easy_Piwik_Counter\\ModuleNlshEasyPiwikCounter',
+    'nlsh_easy_Piwik_Counter'        => 'nlsh\easyPiwikCounter\ModuleNlshEasyPiwikCounter',
 ));
 
 
@@ -93,7 +93,7 @@ array_insert($GLOBALS['FE_MOD']['miscellaneous'], 0, array
  array_insert ($GLOBALS['TL_CTE']['texts'],3, array
 (
 
-    'piwikImpressum'  => 'nlsh_easy_Piwik_Counter\\ContentNlshEasyPiwikImpressum',
+    'piwikImpressum'  => 'nlsh\easyPiwikCounter\ContentNlshEasyPiwikImpressum',
 
 ));
 

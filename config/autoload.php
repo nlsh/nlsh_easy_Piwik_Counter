@@ -5,7 +5,7 @@
  * 
  * Copyright (C) 2005-2012 Leo Feyer
  * 
- * @package Nlsh_easy_Piwik_Counter
+ * @package nlshEasyPiwikCounter
  * @link    http://contao.org
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
@@ -26,10 +26,13 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Elements
-	'nlsh\nlsh_easy_Piwik_Counter\ContentNlshEasyPiwikImpressum' => 'system/modules/nlsh_easy_Piwik_Counter/elements/ContentNlshEasyPiwikImpressum.php',
+	'nlsh\easyPiwikCounter\ContentNlshEasyPiwikImpressum'  => 'system/modules/nlsh_easy_Piwik_Counter/elements/ContentNlshEasyPiwikImpressum.php',
 
 	// Modules
-	'nlsh\nlsh_easy_Piwik_Counter\ModuleNlshEasyPiwikCounter'    => 'system/modules/nlsh_easy_Piwik_Counter/modules/ModuleNlshEasyPiwikCounter.php',
+	'nlsh\easyPiwikCounter\ModuleNlshEasyPiwikCounter'     => 'system/modules/nlsh_easy_Piwik_Counter/modules/ModuleNlshEasyPiwikCounter.php',
+
+	// Test
+	'nlsh\easyPiwikCounter\ModuleNlshEasyPiwikCounterTest' => 'system/modules/nlsh_easy_Piwik_Counter/test/ModuleNlshEasyPiwikCounterTest.php',
 ));
 
 

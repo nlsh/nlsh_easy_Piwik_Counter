@@ -1,16 +1,104 @@
 <?php
+/**
+ * Erweiterung des tl_Module DCA`s
+ *
+ * PHP version 5.3.2 or greater
+ *
+ * @copyright  Nils Heinold  (c) 2012
+ * @author     Nils Heinold
+ * @package    nlshEasyPiwikCounter
+ * @link       http://github.com/nlsh/nlsh_easy_Piwik_Counter
+ * @license    LGPL
+ */
+
 
 /**
- * Contao Open Source CMS
+ * Klasse tl_modulePiwikImpressum
  *
- * Copyright (C) 2005-2012 Leo Feyer
+ * Enthält Funktionen einzelner Felder der Konfiguration des DCA`s tl_module
  *
- * @package   nlsh_easy_Piwik_Counter
- * @author    Nils Heinold
- * @link      http://github.com/nlsh/nlsh_easy_Piwik_Counter
- * @license   LGPL
- * @copyright Nils Heinold
+ * PHP version 5.3.2 or greater
+ *
+ * @copyright  Nils Heinold
+ * @author     Nils Heinold
+ * @package    nlshEasyPiwikCounter
+ * @link       http://github.com/nlsh/nlsh_easy_Piwik_Counter
+ * @license    LGPL
  */
+class tl_modulePiwikImpressum extends Backend
+{
+
+
+    /**
+    * Korrektur Anzeige der PIWIK- Seiten ID, wenn 0, dann leeres Feld anzeigen
+    *
+    * Vorbelegt durch die Datenbank ist ein Wert von 0, da int- Felder wohl einen Wert haben müssen
+    *
+    * ein load/save_callback des Feldes nlsh_piwik_id_site
+    *
+    * @param   int          Feldwert
+    * @return  int/string   entweder vorhandene ID, oder Leer
+    */
+    public function checkIdSiteDuringLoad($Field)
+    {
+        if ($Field == 0) return '';
+        else return $Field;
+    }
+
+
+    /**
+    * Fehlermeldung erzeugen, falls die PIWIK- Seiten ID den Wert 0 hat
+    *
+    * ein save_callback des Feldes nlsh_piwik_id_site
+    *
+    * @param   int Feldwert
+    * @return  int Fehlermeldung
+    */
+    public function checkIdSiteDuringSave($Field)
+    {
+        if ($Field == 0)
+        {
+            throw new Exception($GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_id_site_not_null']);
+        }
+
+        return $Field;
+    }
+
+
+    /**
+    * Sollte das Feld Impressum leer sein ( z.B. für Rücksetzung auf Default Text), dann Default- Text einfügen
+    *
+    * @param   string  Feldwert
+    * @return  string  Text für Impressum
+    */
+    public function checkImpressum($Field)
+    {
+
+        if ($Field == false)
+        {
+            $Field = $GLOBALS['TL_LANG']['MSC']['piwik_Impressum'];
+        }
+
+        return $Field;
+    }
+
+
+    /**
+     * CSS- Code in Template- Ordner speichern
+     *
+     * @param   string Feldwert
+     * @param   DataContainer Contao- DataContainer- Objekt
+     * @return  string Feldwert unverändert zurück
+    .*/
+    public function saveOptOut($Field, DataContainer $dc)
+    {
+        $cssdatei = fopen("../files/nlsh_piwik_counter_".$dc->activeRecord->id.".css","w");
+        fwrite($cssdatei, $Field);
+        fclose($cssdatei);
+
+        return $Field;
+    }
+}
 
 
 /**
@@ -120,81 +208,3 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['nlsh_piwik_last_connect'] = array
                                                                 (
                                     'sql'                => "mediumtext NULL"
                                                                 );
-
-
-/**
- * class tl_modulePiwikImpressum
- *
- * Enthält Funktionen einzelner Felder der Konfiguration
- * @package nlsh_easy_Piwik_Counter
- */
-class tl_modulePiwikImpressum extends Backend
-{
-
-
-    /**
-    * Vorbelegung durch die Datenbank ist ein Wert 0, da int- Felder wohl einen Wert haben müssen
-    *
-    * ein load/save_callback des Feldes nlsh_piwik_id_site
-    *
-    * @param   int         Feldwert
-    * @return  int/false   entweder Leer oder mit altem Wert, falls vorhanden
-    */
-    public function checkIdSiteDuringLoad($Field)
-    {
-        if ($Field == 0) return '';
-        else return $Field;
-    }
-
-
-    /**
-    * Fehlermeldung erzeugen, falls die ID den Wert 0 hat
-    *
-    * @param   int	Feldwert
-    * @return  int/ Fehlermeldung
-    */
-    public function checkIdSiteDuringSave($Field)
-    {
-        if ($Field == 0)
-        {
-            throw new Exception($GLOBALS['TL_LANG']['tl_module']['nlsh_piwik_id_site_not_null']);
-        }
-
-        return $Field;
-    }
-
-
-    /**
-    * Sollte das Feld Impressum leer sein ( z.B. für Rücksetzung auf Default Text), dann Default- Text einfügen
-    *
-    * @param   string  Feldwert
-    * @return  string  Text für Impressum
-    */
-    public function checkImpressum($Field)
-    {
-
-        if ($Field == false)
-        {
-            $Field = $GLOBALS['TL_LANG']['MSC']['piwik_Impressum'];
-        }
-
-        return $Field;
-    }
-
-
-    /**
-     * CSS- Code in Template- Ordner speichern
-     *
-     * @param   string
-     * @param   DataContainer
-     * @return  string zurück mit übergebenem Text, ohne Änderung
-    .*/
-    public function saveOptOut($Field, DataContainer $dc)
-    {
-        $cssdatei = fopen("../files/nlsh_piwik_counter_".$dc->activeRecord->id.".css","w");
-        fwrite($cssdatei, $Field);
-        fclose($cssdatei);
-
-        return $Field;
-    }
-}
