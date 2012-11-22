@@ -43,7 +43,7 @@ Download
 - http://www.contao.org/de/extension-list/view/nlsh_easy_Piwik_Counter.html
 - http://github.com/nlsh/nlsh_easy_Piwik_Counter
 
-API
+API Dokumentation
 ---
 - http://apimasternlsheasypiwikcounter.nils-heinold.de/
 
