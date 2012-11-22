@@ -6,9 +6,7 @@ namespace nlsh\easyPiwikCounter;
 
 
 /**
- * Klasse ContentNlshEasyPiwikImpressum
- *
- * PHP version 5.3.2 or greater
+ * Das PIWIK- Impressum an das Template übergeben.
  *
  * @copyright  Nils Heinold (c) 2012
  * @author     Nils Heinold 
@@ -28,7 +26,9 @@ class ContentNlshEasyPiwikImpressum extends \ContentElement
 
 
     /**
-     * Generate module
+     * Das Modul generieren.
+     *
+     * Werte für das Template bereitstellen.
      */
     protected function compile()
     {

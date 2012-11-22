@@ -6,9 +6,7 @@ namespace nlsh\easyPiwikCounter;
 
 
 /**
- * Klasse ModuleNlshEasyPiwikCounter
- *
- * PHP version 5.3.2 or greater
+ * Übergibt die per API abgefragten Werte eines PIWIK- Servers an das Template
  *
  * @copyright  Nils Heinold (c) 2012
  * @author     Nils Heinold
@@ -30,6 +28,9 @@ class ModuleNlshEasyPiwikCounter extends \Module
 
     /**
      * PIWIK Server korrekt abgefragt
+     *
+     * War Abfrage des PIWIK- Servers korrekt?
+     *
      * @var boolean
      */
     protected $bolConnectCorrectlyPiwikServer = false;
@@ -37,7 +38,12 @@ class ModuleNlshEasyPiwikCounter extends \Module
 
     /**
      * Fehlermeldung vom PIWIK Server
-     * @var mixed false or array
+     *
+     * false: kein Fehler bei PIWIK- Server Abfrage
+     *
+     * array: Fehlermeldung des PIWIK- Servers
+     *
+     * @var false|array false: kein Fehler bei PIWIK- Server Abfrage oder array: Fehlermeldung des PIWIK- Servers
      */
     protected $arrErrorResultPiwikServer = false;
 
@@ -48,7 +54,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
     //PlatzhalterKontruktor
 
     /**
-     * Anzeige einer wildcard im Backend, oder Aufruf der compile- Methode durch die geerbte Module- Klasse , wenn nicht im Backend
+     * Anzeige einer Wildcard im Backend, oder Aufruf der compile()- Methode durch die geerbte Module- Klasse , wenn nicht im Backend
      *
      * @return string entweder die HTML- Ausgabe der Wildcard im Backend oder des Moduls im Frontend
      */
@@ -183,6 +189,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
 
     /**
     * Abfrage des PIWIK- Servers
+    *
     * @param string        Url- Fragment zur Abfrage des PIWIK- Servers
     * @return array|false  Array mit den abgefragten Werten oder false
     **/
@@ -238,9 +245,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
 
 
     /**
-     *  Zahl formatieren
-     *
-     * Zahl ohne Nachkommastellen
+     *  Zahl ohne Nachkommastellen formatieren
      *
      * Länder- Spezifikationen für Tausenderdarstellung werden berücksichtigt
      *

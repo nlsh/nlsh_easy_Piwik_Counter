@@ -20,7 +20,7 @@ namespace PhpUnitTest\easyPiwikCounter;
 
 
 /**
- * Das Contao- System für den PHPUnit- Test initialisieren.
+ * Das Contao- System für den PHPUnit- Test  auf TL_MODE FRONTEND definieren.
  */
 define('TL_MODE', 'FE');
 require(dirname(dirname(dirname(dirname(__FILE__)))).'/initialize.php');
@@ -57,13 +57,11 @@ require_once TL_ROOT . '/system/tmp/ModuleNlshEasyPiwikCounter.php';
 require_once TL_ROOT . '/system/modules/nlsh_easy_Piwik_Counter/languages/de/default.php';
 
 
-/** Klasse ModuleNlshEasyPiwikCounterTest
+/** PHPUnit- Testklasse der Klasse ModuleNlshEasyPiwikCounter
  *
- * Testklasse der Klasse ModuleNlshEasyPiwikCounter
+ * PHPUnit version 3.7.8 oder höher
  *
- * PHPUnit version 3.7.8 or greater
- *
- * PHP version 5.3.2 or greater
+ * PHP version 5.3.2 oder höher
  *
  * @copyright  Nils Heinold (c) 2012
  * @author     Nils Heinold
@@ -76,16 +74,20 @@ class ModuleNlshEasyPiwikCounterTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Übernimmt die zu testende Klasse
+     * Übernimmt das Objekt der zu testenden Klasse
+     *
+     * das zu testende Objekt
+     *
      * @var object
      */
     protected $object;
 
 
     /**
-     * Ein Objekt aus der Klasse ModuleNlshEasyPiwikCounter in $this->object anlegen
+     * Testobjekt erzeugen und
+     * $this->object->bolPhpUnitTest = true hinzufügen
      *
-     * Bei jedem Aufruf der Funktion test...() wird ein neues Objekt hinterlegt
+     * Für jeden Test wird ein neues Objekt aus der Klasse erzeugt.
      */
     protected function setUp()
     {
@@ -96,9 +98,9 @@ class ModuleNlshEasyPiwikCounterTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Das Objekt in $this->object wieder löschen
+     * Testobjekt wieder löschen!
      *
-     * Nach jedem Aufruf der Funktion test...() wird das Objekt wieder gelöscht!
+     * Nach jedem Durchlauf einer Test- Methode wird das zu testende Objekt wieder gelöscht.
      */
     protected function tearDown()
     {
@@ -236,7 +238,7 @@ class ModuleNlshEasyPiwikCounterTest extends \PHPUnit_Framework_TestCase
 
     /**
      *
-     * Test 1 compile() -> Umwandlung der Adressierung zum PIWIK- Server
+     * Test 1 compile() -> Test Umwandlung der Adressierung zum PIWIK- Server
      *
      * Ergebnis muss sein
      *

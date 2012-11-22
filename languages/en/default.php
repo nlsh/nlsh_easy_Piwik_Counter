@@ -1,10 +1,6 @@
 <?php
 /**
- * Easy Piwik Counter
- *
  * This is the language file (en) for default.
- *
- * PHP version 5.3.2 or greater
  *
  * @copyright  Nils Heinold (c) 2012
  * @author     Nils Heinold

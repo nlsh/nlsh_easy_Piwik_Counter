@@ -2,8 +2,6 @@
 /**
  * Erweiterung des tl_content DCA`s
  *
- * PHP version 5.3.2 or greater
- *
  * @copyright  Nils Heinold (c) 2012
  * @author     Nils Heinold
  * @package    nlshEasyPiwikCounter

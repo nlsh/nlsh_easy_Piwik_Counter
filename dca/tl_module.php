@@ -2,8 +2,6 @@
 /**
  * Erweiterung des tl_Module DCA`s
  *
- * PHP version 5.3.2 or greater
- *
  * @copyright  Nils Heinold  (c) 2012
  * @author     Nils Heinold
  * @package    nlshEasyPiwikCounter
@@ -13,11 +11,7 @@
 
 
 /**
- * Klasse tl_modulePiwikImpressum
- *
- * Enthält Funktionen einzelner Felder der Konfiguration des DCA`s tl_module
- *
- * PHP version 5.3.2 or greater
+ * Enthält Funktionen der Konfiguration einzelner Felder des DCA`s tl_module
  *
  * @copyright  Nils Heinold
  * @author     Nils Heinold
@@ -30,14 +24,14 @@ class tl_modulePiwikImpressum extends Backend
 
 
     /**
-    * Korrektur Anzeige der PIWIK- Seiten ID, wenn 0, dann leeres Feld anzeigen
+    * Korrektur der Anzeige der PIWIK- Seiten ID, wenn 0, dann leeres Feld anzeigen
     *
     * Vorbelegt durch die Datenbank ist ein Wert von 0, da int- Felder wohl einen Wert haben müssen
     *
     * ein load/save_callback des Feldes nlsh_piwik_id_site
     *
     * @param   int          Feldwert
-    * @return  int/string   entweder vorhandene ID, oder Leer
+    * @return  int|string   entweder vorhandene ID, oder Leerstring
     */
     public function checkIdSiteDuringLoad($Field)
     {
@@ -52,7 +46,7 @@ class tl_modulePiwikImpressum extends Backend
     * ein save_callback des Feldes nlsh_piwik_id_site
     *
     * @param   int Feldwert
-    * @return  int Fehlermeldung
+    * @return  int Feldwert
     */
     public function checkIdSiteDuringSave($Field)
     {
@@ -66,10 +60,14 @@ class tl_modulePiwikImpressum extends Backend
 
 
     /**
-    * Sollte das Feld Impressum leer sein ( z.B. für Rücksetzung auf Default Text), dann Default- Text einfügen
+    * Impressums- Text prüfen
     *
-    * @param   string  Feldwert
-    * @return  string  Text für Impressum
+    *Sollte das Feld Impressum leer sein ( z.B für Rücksetzung auf Default Text), dann Default- Text einfügen
+    *
+    * ein load/save_callback des Feldes nlsh_piwik_impressum
+    *
+    * @param   string eingegebener oder nicht eingegebener Impressumstext
+    * @return  string Impressumstext
     */
     public function checkImpressum($Field)
     {
@@ -86,10 +84,12 @@ class tl_modulePiwikImpressum extends Backend
     /**
      * CSS- Code in Template- Ordner speichern
      *
+     * save_callback des Feldes nlsh_piwik_css_optout
+     *
      * @param   string Feldwert
-     * @param   DataContainer Contao- DataContainer- Objekt
+     * @param   DataContainer DataContainer- Objekt
      * @return  string Feldwert unverändert zurück
-    .*/
+     */
     public function saveOptOut($Field, DataContainer $dc)
     {
         $cssdatei = fopen("../files/nlsh_piwik_counter_".$dc->activeRecord->id.".css","w");
