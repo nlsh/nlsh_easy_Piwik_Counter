@@ -3,7 +3,7 @@
 /**
  * Contao Open Source CMS
  * 
- * Copyright (C) 2005-2012 Leo Feyer
+ * Copyright (C) 2005-2013 Leo Feyer
  * 
  * @package nlshEasyPiwikCounter
  * @link    http://contao.org
@@ -17,6 +17,7 @@
 ClassLoader::addNamespaces(array
 (
 	'nlsh',
+	'PhpUnitTest',
 ));
 
 
@@ -25,14 +26,17 @@ ClassLoader::addNamespaces(array
  */
 ClassLoader::addClasses(array
 (
+	// Classes
+	'nlsh\easyPiwikCounter\tl_modulePiwikImpressum'               => 'system/modules/nlsh_easy_Piwik_Counter/classes/tl_modulePiwikImpressum.php',
+
 	// Elements
-	'nlsh\easyPiwikCounter\ContentNlshEasyPiwikImpressum'  => 'system/modules/nlsh_easy_Piwik_Counter/elements/ContentNlshEasyPiwikImpressum.php',
+	'nlsh\easyPiwikCounter\ContentNlshEasyPiwikImpressum'         => 'system/modules/nlsh_easy_Piwik_Counter/elements/ContentNlshEasyPiwikImpressum.php',
 
 	// Modules
-	'nlsh\easyPiwikCounter\ModuleNlshEasyPiwikCounter'     => 'system/modules/nlsh_easy_Piwik_Counter/modules/ModuleNlshEasyPiwikCounter.php',
+	'nlsh\easyPiwikCounter\ModuleNlshEasyPiwikCounter'            => 'system/modules/nlsh_easy_Piwik_Counter/modules/ModuleNlshEasyPiwikCounter.php',
 
 	// Test
-	'nlsh\easyPiwikCounter\ModuleNlshEasyPiwikCounterTest' => 'system/modules/nlsh_easy_Piwik_Counter/test/ModuleNlshEasyPiwikCounterTest.php',
+	'PhpUnitTest\easyPiwikCounter\ModuleNlshEasyPiwikCounterTest' => 'system/modules/nlsh_easy_Piwik_Counter/test/ModuleNlshEasyPiwikCounterTest.php',
 ));
 
 
