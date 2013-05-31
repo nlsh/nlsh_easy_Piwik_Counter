@@ -14,6 +14,9 @@
  * Add palettes to tl_content
  */
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['piwikImpressum']   = '{type_legend},type;
-                                                                    {protected_legend:hide},protected;
-                                                                    {expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['piwikImpressum']   =  '{type_legend},
+                                                                        type;
+                                                                    {protected_legend:hide},
+                                                                        protected;
+                                                                    {expert_legend:hide},
+                                                                        guests,cssID,space';

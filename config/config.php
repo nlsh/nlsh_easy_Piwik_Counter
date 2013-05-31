@@ -62,10 +62,10 @@
  * module is rendered. The class "ModuleClass1" has to be stored in a file
  * named "ModuleClass1.php" in your module folder.
  */
-array_insert($GLOBALS['FE_MOD']['miscellaneous'], 0, array
-(
+array_insert($GLOBALS['FE_MOD']['miscellaneous'], 0, array (
     'nlsh_easy_Piwik_Counter'        => 'nlsh\easyPiwikCounter\ModuleNlshEasyPiwikCounter',
-));
+    )
+);
 
 
 /**
@@ -90,12 +90,10 @@ array_insert($GLOBALS['FE_MOD']['miscellaneous'], 0, array
  * named "ContentClass1.php" in your module folder.
  */
 
- array_insert ($GLOBALS['TL_CTE']['texts'],3, array
-(
-
+array_insert ($GLOBALS['TL_CTE']['texts'], 3, array (
     'piwikImpressum'  => 'nlsh\easyPiwikCounter\ContentNlshEasyPiwikImpressum',
-
-));
+    )
+);
 
 
 /**
