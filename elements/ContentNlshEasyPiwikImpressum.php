@@ -41,11 +41,11 @@ class ContentNlshEasyPiwikImpressum extends \ContentElement
     protected function compile() {
          // Suche in Datenbank nach einem Modul des Typs 'nlsh_easy_Piwik_Module',
          // wenn kein PHPUnit Test ausgeführt wird
-        if ($this->bolPhpUnitTest === FALSE) {
-            $objPiwikModule = \ModuleModel::findOneBy('type', 'nlsh_easy_Piwik_Counter');
-        } else {
+        if ($this->bolPhpUnitTest === TRUE) {
              // wenn PHPUnit Test, dann Objekt aus PHPUTest übernehmen
             $objPiwikModule = $this->objPiwikModulePhpUnitTest;
+        } else {
+            $objPiwikModule = \ModuleModel::findOneBy('type', 'nlsh_easy_Piwik_Counter');
         }
 
          // Wenn Modul vorhanden
