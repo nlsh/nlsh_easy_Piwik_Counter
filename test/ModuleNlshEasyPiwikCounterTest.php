@@ -13,6 +13,9 @@ namespace PhpUnitTest\easyPiwikCounter;
  * Beispielaufruf in der Konsole:
  *
  * phpunit ModuleNlshEasyPiwikCounterTest
+ *
+ * Manual : http://phpunit.de/manual/2.3/de/
+ *          http://phpunit.de/manual/3.6/en/index.html
  */
 
 

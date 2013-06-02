@@ -26,6 +26,12 @@ class ContentNlshEasyPiwikImpressum extends \ContentElement
 
 
     /**
+     * Platzhalter für den Konstruktor bei PHPUnit- Tests
+     */
+     // PlatzhalterKontruktor
+
+
+    /**
      * Das Modul generieren.
      *
      * Werte für das Template bereitstellen.
@@ -33,9 +39,16 @@ class ContentNlshEasyPiwikImpressum extends \ContentElement
      * @return void
      */
     protected function compile() {
-         // Suche nach einem Modul des Typs 'nlsh_easy_Piwik_Module'
-        $objPiwikModule = \ModuleModel::findOneBy('type', 'nlsh_easy_Piwik_Counter');
+         // Suche in Datenbank nach einem Modul des Typs 'nlsh_easy_Piwik_Module',
+         // wenn kein PHPUnit Test ausgeführt wird
+        if ($this->bolPhpUnitTest === FALSE) {
+            $objPiwikModule = \ModuleModel::findOneBy('type', 'nlsh_easy_Piwik_Counter');
+        } else {
+             // wenn PHPUnit Test, dann Objekt aus PHPUTest übernehmen
+            $objPiwikModule = $this->objPiwikModulePhpUnitTest;
+        }
 
+         // Wenn Modul vorhanden
         if ($objPiwikModule !== NULL) {
              // Impressumstext hinzufügen
             $arrEasyPiwikImpressum['impressumtext'] = $objPiwikModule->nlsh_piwik_impressum;

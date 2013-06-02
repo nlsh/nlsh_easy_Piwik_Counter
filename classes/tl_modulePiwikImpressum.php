@@ -27,6 +27,12 @@ class tl_modulePiwikImpressum extends \Backend
 
 
     /**
+     * Platzhalter für den Konstruktor bei PHPUnit- Tests
+     */
+     // PlatzhalterKontruktor
+
+
+    /**
     * Korrektur der Anzeige der PIWIK- Seiten ID, wenn 0, dann leeres Feld anzeigen
     *
     * Vorbelegt durch die Datenbank ist ein Wert von 0,
@@ -38,11 +44,9 @@ class tl_modulePiwikImpressum extends \Backend
     * @return  int|string   entweder vorhandene ID, oder Leerstring
     */
     public function checkIdSiteDuringLoad($field) {
-        if ($field == 0) {
-            $field = '';
-        }
+        $return = ($field == 0) ? '' : $field ;
 
-        return $field;
+        return $return;
     }
 
 
