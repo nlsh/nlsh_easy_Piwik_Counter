@@ -1,0 +1,20 @@
+.piwik_counter
+{
+	width: 150px;
+}
+
+.piwik_counter
+{
+	color:red;
+}
+
+.piwik_counter span
+{
+	margin-left:5pt;
+	float:right;
+}
+.piwikiframe
+{
+	width: 99%;
+	height:200px;
+}

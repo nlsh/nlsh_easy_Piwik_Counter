@@ -1,0 +1,29 @@
+{
+    "name": "nlsh/nlsh_easy_Piwik_Counter",
+    "type": "contao-module",
+    "description": "Contao module to invoise a easy Piwik Counter",
+    "keywords": ["contao", "extension", "piwik", "counter"],
+    "license": "LGPL-3.0+",
+    "authors": [ {
+                    "name": "Nils Heinold",
+                    "homepage": "https://github.com/nlsh"
+               }
+    ],
+    "support": {
+        "email": "github@nilsheinold.de",
+        "issues": "https://github.com/nlsh/nlsh_easy_Piwik_Counter/issues",
+        "wiki": "https://github.com/nlsh/nlsh_easy_Piwik_Counter/wiki",
+        "source": "https://github.com/nlsh/nlsh_easy_Piwik_Counter"
+    },
+    "require": {
+        "contao-community-alliance/composer-plugin": "~2.0",
+        "contao/core": ">=3.1,<=3.4"
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "src": "system/modules/nlsh_Kleingartenverwaltung"
+            }
+        }
+    }
+}
