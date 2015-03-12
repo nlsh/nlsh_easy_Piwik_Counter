@@ -22,7 +22,7 @@
     "extra": {
         "contao": {
             "sources": {
-                "src": "system/modules/nlsh_Kleingartenverwaltung"
+                "src": "system/modules/nlsh_easy_Piwik_Counter"
             }
         }
     }
