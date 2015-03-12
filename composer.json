@@ -1,5 +1,5 @@
 {
-    "name": "nlsh/nlsh_easy_Piwik_Counter",
+    "name": "nlsh/nlsh_easy_piwik_counter",
     "type": "contao-module",
     "description": "Contao module to invoise a easy Piwik Counter",
     "keywords": ["contao", "extension", "piwik", "counter"],
