@@ -196,14 +196,6 @@ class ModuleNlshEasyPiwikCounter extends \Module
         $strUrl  = $this->nlsh_piwik_domain . '/index.php?module=API' . $strUrlFragment;
         $strUrl .= $strUrl . '&format=php&token_auth=' . $this->nlsh_piwik_token_auth;
 
-        @$result = file_get_contents($strUrl);
-
-         // Sollte kein Ergebnis vorliegen, kann eventell der Zugriff
-         // per Providereinstellung verboten sein
-         // darum ein Versuch mit CURL() starten
-         // Dank an Kolja Kutschera für den Tipp;
-         // Online: koljakutschera.de | webdesignresponsive.de
-
          // Kontrolle ob Curl in php.ini aktiviert
         $curlActive = FALSE;
 
@@ -211,7 +203,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
             $curlActive = TRUE;
         };
 
-        if (($result == FALSE && $curlActive === TRUE)) {
+        if (($curlActive === TRUE)) {
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $strUrl);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
