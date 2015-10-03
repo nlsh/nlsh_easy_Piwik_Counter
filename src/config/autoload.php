@@ -17,7 +17,6 @@
 ClassLoader::addNamespaces(array
 (
 	'nlsh',
-	'PhpUnitTest',
 ));
 
 
@@ -34,9 +33,6 @@ ClassLoader::addClasses(array
 
 	// Modules
 	'nlsh\easyPiwikCounter\ModuleNlshEasyPiwikCounter'            => 'system/modules/nlsh_easy_Piwik_Counter/modules/ModuleNlshEasyPiwikCounter.php',
-
-	// Test
-	'PhpUnitTest\easyPiwikCounter\ModuleNlshEasyPiwikCounterTest' => 'system/modules/nlsh_easy_Piwik_Counter/test/ModuleNlshEasyPiwikCounterTest.php',
 ));
 
 

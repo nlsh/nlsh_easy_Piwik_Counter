@@ -50,11 +50,6 @@ class ModuleNlshEasyPiwikCounter extends \Module
 
 
     /**
-     * Platzhalter für den Konstruktor bei PHPUnit- Tests
-     */
-     // PlatzhalterKontruktor
-
-    /**
      * Im Backend eine wildcard anzeigen
      *
      * @return string HTML Ausgabe, getrennt für das Backend/ Frontend
@@ -123,16 +118,13 @@ class ModuleNlshEasyPiwikCounter extends \Module
         $piwikVisitsAll = $piwikVisitsAll['nb_visits'] + $this->nlsh_piwik_visits_start;
 
         if ($this->bolConnectCorrectlyPiwikServer == TRUE) {
-             // Wenn Kontakt und kein PHPUnit- Test, dann speichern
-            if ($this->bolPhpUnitTest == FALSE) {
-                $this->Database
-                        ->prepare("
-                                    UPDATE      `tl_module`
-                                    SET         `nlsh_piwik_last_connect` = ?
-                                    WHERE       `tl_module`.`id` = ?"
-                        )
+            $this->Database
+                ->prepare("
+                    UPDATE      `tl_module`
+                    SET         `nlsh_piwik_last_connect` = ?
+                    WHERE       `tl_module`.`id` = ?"
+            )
                         ->execute($piwikVisitsAll, $this->id);
-            }
 
              // und rein ins Template
             $this->Template->visits_all = $this->formatNumber($piwikVisitsAll);
@@ -183,7 +175,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
              // ist zwar auch nicht richtig, dafür verwirrt aber ein
              // online- Counter von 0 nicht mehr
 
-            if (($this->Template->visits_online == 0) && ($this->bolPhpUnitTest == FALSE)) {
+            if (($this->Template->visits_online == 0)) {
                 $this->Template->visits_all    = ($this->Template->visits_all   + 1);
                 $this->Template->visits_month  = ($this->Template->visits_month + 1);
                 $this->Template->visits_today  = ($this->Template->visits_today + 1);
@@ -219,8 +211,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
             $curlActive = TRUE;
         };
 
-        if (($result == FALSE && $curlActive === TRUE)
-            || ($this->bolPhpUnitTest == TRUE && $curlActive === TRUE)) {
+        if (($result == FALSE && $curlActive === TRUE)) {
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $strUrl);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
