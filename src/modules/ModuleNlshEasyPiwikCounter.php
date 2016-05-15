@@ -124,7 +124,7 @@ class ModuleNlshEasyPiwikCounter extends \Module
                     SET         `nlsh_piwik_last_connect` = ?
                     WHERE       `tl_module`.`id` = ?"
             )
-                        ->execute($piwikVisitsAll, $this->id);
+            ->execute($piwikVisitsAll, $this->id);
 
              // und rein ins Template
             $this->Template->visits_all = $this->formatNumber($piwikVisitsAll);
